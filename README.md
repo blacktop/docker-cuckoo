@@ -36,6 +36,8 @@ $ docker run -d --name cuckoo -p 80:80 blacktop/cuckoo
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo):80`
 
+![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
+
 ### To Run on OSX
  - Install [Homebrew](http://brew.sh)
 

@@ -7,17 +7,17 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 * [debian:wheezy](https://index.docker.io/_/debian/)
 
 ### Image Sizes
-| Image | Virtual Size | cuckoo v1.2.0 | TOTAL     |
+| Image | Virtual Size | cuckoo v1.2   | TOTAL     |
 |:------:|:-----------:|:-------------:|:---------:|
-| debian | 85.1  MB    | 508.9 MB      | 594 MB    |
+| debian | 85.1  MB    | 508.8 MB      | 593.9 MB  |
 
 ### Image Tags
 ```bash
 $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/cuckoo        latest              594   MB
-blacktop/cuckoo        1.2.0               594   MB
+blacktop/cuckoo        latest              593.9   MB
+blacktop/cuckoo        1.2.0               593.9   MB
 ```
 
 ### Installation
@@ -55,11 +55,13 @@ $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo
 ```
 
 Open a web browser and navigate to :
+
 ```bash
 $(boot2docker ip)
 ```
 
 As a convience you can add the **boot2docker** IP to your **/etc/hosts** file:
+
 ```bash
 $ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
 ```

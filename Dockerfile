@@ -17,16 +17,16 @@ RUN buildDeps='build-essential \
     | tee /etc/apt/sources.list.d/mongodb-org-3.0.list \
   && apt-get update -qq \
   && apt-get install -yq $buildDeps \
-                                                  python \
-                                                  tcpdump \
-                                                  git-core \
-                                                  supervisor \
-                                                  mongodb-org \
-                                                  python-dpkt \
-                                                  python-magic \
-                                                  python-gridfs \
-                                                  python-chardet \
-                                                  python-libvirt  \
+                          python \
+                          tcpdump \
+                          git-core \
+                          supervisor \
+                          mongodb-org \
+                          python-dpkt \
+                          python-magic \
+                          python-gridfs \
+                          python-chardet \
+                          python-libvirt  \
   && echo "Create mongoDB db folder..." \
   && mkdir -p /data/db \
   && echo '' > /var/log/mongodb/mongod.log \
@@ -47,7 +47,7 @@ RUN buildDeps='build-essential \
   && cd pefile \
   && python setup.py build \
   && python setup.py install \
-  && rm -rf /pefile-1.2.10-139 \
+  && rm -rf /pefile \
   && echo "Grab gosu for easy step-down from root..." \
   && gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \

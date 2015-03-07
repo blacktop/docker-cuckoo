@@ -34,7 +34,7 @@ $ docker build -t blacktop/cuckoo github.com/blacktop/docker-cuckoo
 ```bash
 $ docker run -d --name cuckoo -p 80:80 blacktop/cuckoo
 ```
-Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo):80`
+Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo)`
 
 ![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
 

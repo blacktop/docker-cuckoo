@@ -36,8 +36,6 @@ $ docker run -d --name cuckoo -p 80:80 blacktop/cuckoo
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo)`
 
-![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
-
 ### To Run on OSX
  - Install [Homebrew](http://brew.sh)
 
@@ -58,7 +56,7 @@ $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo
 
 Open a web browser and navigate to :
 ```bash
-$(boot2docker ip):8080
+$(boot2docker ip)
 ```
 
 As a convience you can add the **boot2docker** IP to your **/etc/hosts** file:
@@ -66,6 +64,8 @@ As a convience you can add the **boot2docker** IP to your **/etc/hosts** file:
 $ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to http://dockerhost from your host
+
+![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
 
 ### Todo
 - [x] Install/Run Cuckoo Sandbox

@@ -46,7 +46,7 @@ RUN \
 # Install Cuckoo Sandbox and remove install dir after to conserve space
 ADD https://pefile.googlecode.com/files/pefile-1.2.10-139.tar.gz /
 RUN  \
-  git clone git://github.com/cuckoobox/cuckoo.git && \
+  git clone --recursive --branch 1.2 git://github.com/cuckoobox/cuckoo.git && \
   tar -zxvf pefile-1.2.10-139.tar.gz && \
   rm pefile-1.2.10-139.tar.gz && \
   cd pefile-1.2.10-139 && \

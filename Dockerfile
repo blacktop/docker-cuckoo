@@ -2,7 +2,8 @@ FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
+RUN groupadd cuckoo && \
+    useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo
 
 # Install Cuckoo Sandbox Required Dependencies
 ADD https://pefile.googlecode.com/files/pefile-1.2.10-139.tar.gz /
@@ -49,7 +50,7 @@ RUN \
 
 # Install Cuckoo Sandbox and remove install dir after to conserve space
 RUN git clone git://github.com/cuckoobox/cuckoo.git \
-      && chown -R user:user /cuckoo \
+      && chown -R cuckoo:cuckoo /cuckoo \
       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf

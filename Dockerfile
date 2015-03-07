@@ -18,12 +18,14 @@ RUN \
                       git-core \
                       supervisor \
                       python-pip \
+                      python-dev \
                       supervisor \
                       mongodb-org \
                       python-dpkt \
                       python-magic \
                       python-gridfs \
                       python-chardet \
+                      build-essential \
                       python-libvirt --no-install-recommends && \
   mkdir -p /data/db && echo '' > /var/log/mongodb/mongod.log && \
   chown -R mongodb /var/log/mongodb/mongod.log /data/db && \
@@ -37,6 +39,7 @@ RUN \
                                        pefile \
                                        django \
                                        nose && \
+  apt-get purge -y build-essential python-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

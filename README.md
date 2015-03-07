@@ -48,7 +48,7 @@ $ boot2docker init
 $ boot2docker up
 $ $(boot2docker shellinit)
 ```
-> If you want to cusomize the cuckoo configuration before launching you can link the conf folder into the container like so:
+> If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so:
 
 ```bash
 $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo

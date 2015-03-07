@@ -1,4 +1,4 @@
-# ![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/logo.png) Dockerfile
+# ![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/logo.png) Dockerfile
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
 
@@ -67,7 +67,7 @@ $ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
-![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
+![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/dashboard.png)
 
 ### Todo
 - [x] Install/Run Cuckoo Sandbox

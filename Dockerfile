@@ -6,9 +6,9 @@ RUN groupadd cuckoo && \
     useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo
 
 # Install Cuckoo Sandbox Required Dependencies
-COPY pefile-1.2.10-139.tar.gz /pefile-1.2.10-139.tar.gz
-COPY gosu-amd64 /usr/local/bin/gosu
-COPY gosu-amd64.asc /usr/local/bin/gosu.asc
+COPY files/pefile-1.2.10-139.tar.gz /pefile-1.2.10-139.tar.gz
+COPY files/gosu-amd64 /usr/local/bin/gosu
+COPY files/gosu-amd64.asc /usr/local/bin/gosu.asc
 RUN buildDeps='build-essential \
                python-dev \
                python-pip \

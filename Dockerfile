@@ -60,6 +60,6 @@ WORKDIR /cuckoo/web
 
 VOLUME ["/cuckoo/conf"]
 
-EXPOSE 8000
+EXPOSE 80
 
 CMD ["/usr/bin/supervisord"]

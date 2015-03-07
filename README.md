@@ -32,7 +32,7 @@ $ docker build -t blacktop/cuckoo github.com/blacktop/docker-cuckoo
 ```
 ### Usage
 ```bash
-$ docker run -d --name cuckoo -p 80:8000 blacktop/cuckoo
+$ docker run -d --name cuckoo -p 80:80 blacktop/cuckoo
 ```
 Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo)`
 
@@ -51,7 +51,7 @@ $ $(boot2docker shellinit)
 > If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so:
 
 ```bash
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:8000 blacktop/cuckoo
+$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo
 ```
 
 Open a web browser and navigate to :

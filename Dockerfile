@@ -12,8 +12,7 @@ COPY files/gosu-amd64.asc /usr/local/bin/gosu.asc
 RUN buildDeps='build-essential \
                python-dev \
                python-pip \
-               adduser \
-               curl' \
+               adduser' \
   && set -x \
   && apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 \
   && echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" \
@@ -55,9 +54,9 @@ RUN buildDeps='build-essential \
   && gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && gpg --verify /usr/local/bin/gosu.asc \
   && rm /usr/local/bin/gosu.asc \
-  && chmod +x /usr/local/bin/gosu
+  && chmod +x /usr/local/bin/gosu \
   && echo "Clean up unnecessary files..." \
-  && apt-get purge  -y --auto-remove $buildDeps \
+  && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

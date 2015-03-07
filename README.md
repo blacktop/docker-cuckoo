@@ -1,6 +1,4 @@
-![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/logo.png)
-Cuckoo Sandbox Dockerfile
-=========================
+# ![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/logo.png) Dockerfile
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
 

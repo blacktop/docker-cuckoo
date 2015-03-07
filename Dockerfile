@@ -2,9 +2,7 @@ FROM debian:wheezy
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-# Prevent daemon start during install
-RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
-    chmod +x /usr/sbin/policy-rc.d
+RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
 
 # Install Cuckoo Sandbox Required Dependencies
 RUN \
@@ -39,7 +37,7 @@ RUN \
                                        pefile \
                                        django \
                                        nose && \
-  apt-get purge -y build-essential python-dev && \
+  apt-get purge  -y --auto-remove build-essential python-dev python-pip && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

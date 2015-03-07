@@ -28,12 +28,6 @@ RUN \
                       python-libvirt --no-install-recommends && \
   mkdir -p /data/db && echo '' > /var/log/mongodb/mongod.log && \
   chown -R mongodb:mongodb /var/log/mongodb/mongod.log /data/db && \
-  tar -zxvf pefile-1.2.10-139.tar.gz && \
-  rm pefile-1.2.10-139.tar.gz && \
-  cd pefile-1.2.10-139 && \
-  python setup.py build && \
-  python setup.py install && \
-  rm -rf /pefile-1.2.10-139 && \
   pip install --upgrade pip && \
   /usr/local/bin/pip install --upgrade sqlalchemy \
                                        pymongo \
@@ -43,6 +37,12 @@ RUN \
                                        pefile \
                                        django \
                                        nose && \
+  tar -zxvf pefile-1.2.10-139.tar.gz && \
+  rm pefile-1.2.10-139.tar.gz && \
+  cd pefile-1.2.10-139 && \
+  python setup.py build && \
+  python setup.py install && \
+  rm -rf /pefile-1.2.10-139 && \
   apt-get purge  -y --auto-remove build-essential python-dev python-pip && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

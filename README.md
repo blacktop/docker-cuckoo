@@ -63,7 +63,7 @@ As a convience you can add the **boot2docker** IP to your **/etc/hosts** file:
 ```bash
 $ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
 ```
-Now you can navigate to http://dockerhost from your host
+Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 ![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/dashboard.png)
 

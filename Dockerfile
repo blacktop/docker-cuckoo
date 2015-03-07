@@ -6,6 +6,7 @@ RUN groupadd cuckoo && \
     useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo
 
 # Install Cuckoo Sandbox Required Dependencies
+COPY pefile-1.2.10-139.tar.gz /pefile-1.2.10-139.tar.gz
 RUN buildDeps='build-essential \
                python-dev \
                python-pip \
@@ -26,7 +27,7 @@ RUN buildDeps='build-essential \
                           python-magic \
                           python-gridfs \
                           python-chardet \
-                          python-libvirt  \
+                          python-libvirt --no-install-recommends \
   && echo "Create mongoDB db folder..." \
   && mkdir -p /data/db \
   && echo '' > /var/log/mongodb/mongod.log \
@@ -42,12 +43,12 @@ RUN buildDeps='build-essential \
                                            django \
                                            nose \
   && echo "Installing latest version of pefile..." \
-  && curl -sSL "https://pefile.googlecode.com/files/pefile-1.2.10-139.tar.gz" -o pefile.tar.gz \                                   && tar -zxvf pefile.tar.gz \
-  && rm pefile.tar.gz \
-  && cd pefile \
+  && tar -zxvf pefile-1.2.10-139.tar.gz \
+  && rm pefile-1.2.10-139.tar.gz \
+  && cd pefile-1.2.10-139 \
   && python setup.py build \
   && python setup.py install \
-  && rm -rf /pefile \
+  && rm -rf /pefile-1.2.10-139 \
   && echo "Grab gosu for easy step-down from root..." \
   && gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
   && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \

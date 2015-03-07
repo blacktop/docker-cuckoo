@@ -56,6 +56,7 @@ RUN  \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY conf/reporting.conf /cuckoo/conf/reporting.conf
 
 WORKDIR /cuckoo/web
 

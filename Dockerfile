@@ -45,7 +45,7 @@ RUN buildDeps='build-essential \
                                            nose \
   && echo "Installing latest version of pefile..." \
   && echo "a1bc91758ed1ff8c2df661511023360fcf9bbf77 *pefile-1.2.10-139.tar.gz" \
-    | shasum -c - \  
+    | shasum -c - \
   && tar -zxvf pefile-1.2.10-139.tar.gz \
   && rm pefile-1.2.10-139.tar.gz \
   && cd pefile-1.2.10-139 \
@@ -69,11 +69,14 @@ RUN git clone git://github.com/cuckoobox/cuckoo.git \
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY conf/reporting.conf /cuckoo/conf/reporting.conf
+COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME ["/cuckoo/conf"]
 
 WORKDIR /cuckoo/web
 
 EXPOSE 80
+
+# ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["/usr/bin/supervisord"]

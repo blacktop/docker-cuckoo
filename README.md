@@ -71,5 +71,6 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 ### Todo
 - [x] Install/Run Cuckoo Sandbox
-- [ ] Break mongo out into a separate container using docker-compose
+- [x] Break mongo out into a separate container using docker-compose
+- [ ] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 - [ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)

@@ -1,0 +1,35 @@
+######################
+## CUCKOO CONTAINER ##
+######################
+cuckoo:
+    restart: always
+    build: .
+    expose:
+        - "8000"
+    links:
+        - mongo:mongo
+    # volumes:
+    #     - /usr/src/app
+    command: /usr/bin/python /cuckoo/web/manage.py runserver
+
+#####################
+## NGINX CONTAINER ##
+#####################
+nginx:
+    restart: always
+    image: nginx
+    ports:
+        - "80:80"
+    volumes:
+        - nginx/sites-enabled:/etc/nginx/sites-enabled
+    links:
+        - cuckoo:cuckoo
+
+####################
+# MONGO CONTAINER  #
+####################
+mongo:
+    restart: always
+    image: mongo
+    expose:
+        - "27017"

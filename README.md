@@ -60,7 +60,7 @@ Open a web browser and navigate to :
 $(boot2docker ip)
 ```
 
-As a convience you can add the **boot2docker** IP to your **/etc/hosts** file:
+As a convenience you can add the **boot2docker** IP to your **/etc/hosts** file:
 
 ```bash
 $ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts

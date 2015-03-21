@@ -1,6 +1,6 @@
 # ![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/logo.png) Dockerfile
 
-This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://index.docker.io/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
+This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
 
 ### Dependencies
 
@@ -24,7 +24,7 @@ blacktop/cuckoo        1.2.0               542   MB
 
 1. Install [Docker](https://www.docker.io/).
 
-2. Download [trusted build](https://index.docker.io/u/blacktop/cuckoo/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/cuckoo`
+2. Download [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/cuckoo`
 
 #### Alternatively, build an image from Dockerfile
 ```bash

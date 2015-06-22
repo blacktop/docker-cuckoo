@@ -6,10 +6,8 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 
 * [debian:wheezy](https://index.docker.io/_/debian/)
 
-### Image Sizes
-| Image | Virtual Size | cuckoo v1.2   | TOTAL     |
-|:------:|:-----------:|:-------------:|:---------:|
-| debian | 85.1  MB    | 456.9 MB      | 542 MB    |
+### Image Size
+[![](https://badge.imagelayers.io/blacktop/cuckoo:latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest 'Get your own badge on imagelayers.io')
 
 ### Image Tags
 ```bash
@@ -43,10 +41,9 @@ Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo)`
 $ brew install cask
 $ brew cask install virtualbox
 $ brew install docker
-$ brew install boot2docker
-$ boot2docker init
-$ boot2docker up
-$ $(boot2docker shellinit)
+$ brew install docker-machine
+$ docker-machine create --driver virtualbox dev
+$ eval $(docker-machine env dev)
 ```
 > If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so:
 
@@ -57,13 +54,13 @@ $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo
 Open a web browser and navigate to :
 
 ```bash
-$(boot2docker ip)
+$(docker-machine ip dev)
 ```
 
-As a convenience you can add the **boot2docker** IP to your **/etc/hosts** file:
+As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
 
 ```bash
-$ echo $(boot2docker ip) dockerhost | sudo tee -a /etc/hosts
+$ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 

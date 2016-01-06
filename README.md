@@ -1,5 +1,11 @@
 # ![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/logo.png) Dockerfile
 
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
+[![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)][hub]
+[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
+[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
+
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
 
 ### Dependencies
@@ -71,3 +77,5 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 - [x] Break mongo out into a separate container using docker-compose
 - [ ] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 - [ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
+
+[hub]: https://hub.docker.com/r/blacktop/cuckoo/

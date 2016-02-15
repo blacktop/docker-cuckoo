@@ -6,11 +6,11 @@
 [![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
 [![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
 
-This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for [Docker](https://www.docker.io/)'s [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) published to the public [Docker Registry](https://index.docker.io/).
+This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for a [Docker](https://www.docker.io/) [trusted build](https://hub.docker.com/r/blacktop/cuckoo/) published to the public [Docker Registry](https://hub.docker.com/).
 
 ### Dependencies
 
-* [debian:wheezy](https://index.docker.io/_/debian/)
+* [debian:wheezy](https://hub.docker.com/_/debian/)
 
 ### Image Tags
 ```bash
@@ -18,6 +18,7 @@ $ docker images
 
 REPOSITORY          TAG                 VIRTUAL SIZE
 blacktop/cuckoo        latest              448.5 MB
+blacktop/cuckoo        2.0-rc1             448.5 MB
 blacktop/cuckoo        1.2.0               444.8 MB
 ```
 
@@ -25,17 +26,17 @@ blacktop/cuckoo        1.2.0               444.8 MB
 
 1. Install [Docker](https://www.docker.io/).
 
-2. Download [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) from public [Docker Registry](https://index.docker.io/): `docker pull blacktop/cuckoo`
+2. Install [docker-compose](https://docs.docker.com/compose/install/)
 
-#### Alternatively, build an image from Dockerfile
-```bash
-$ docker build -t blacktop/cuckoo github.com/blacktop/docker-cuckoo
-```
+3. Download [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) from public [Docker Registry](https://hub.docker.com/): `docker pull blacktop/cuckoo`
+
 ### Usage
 ```bash
-$ docker run -d --name cuckoo -p 80:80 blacktop/cuckoo
+$ git clone https://github.com/blacktop/docker-cuckoo.git
+$ cd docker-cuckoo
+$ docker-compose up -d
 ```
-Now navigate to `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo)`
+Now navigate to `$(docker-machine ip default)`
 
 ### To Run on OSX
  - Install [Homebrew](http://brew.sh)
@@ -45,19 +46,20 @@ $ brew install caskroom/cask/brew-cask
 $ brew cask install virtualbox
 $ brew install docker
 $ brew install docker-machine
-$ docker-machine create --driver virtualbox dev
-$ eval $(docker-machine env dev)
+$ docker-machine create --driver virtualbox default
+$ eval $(docker-machine env default)
 ```
 > If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so:
 
 ```bash
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro -p 80:80 blacktop/cuckoo
+$ docker run -d --name mongo mongo
+$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro --link mongo -p 80:80 blacktop/cuckoo
 ```
 
 Open a web browser and navigate to :
 
 ```bash
-$(docker-machine ip dev)
+$(docker-machine ip default)
 ```
 
 As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
@@ -67,6 +69,7 @@ $ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
+![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/submit.png)
 ![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/dashboard.png)
 
 ### Todo

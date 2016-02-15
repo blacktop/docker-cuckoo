@@ -19,7 +19,7 @@ $ docker images
 REPOSITORY             TAG                 VIRTUAL SIZE
 blacktop/cuckoo        latest              327 MB
 blacktop/cuckoo        2.0                 327 MB
-blacktop/cuckoo        1.2.0               444.8 MB
+blacktop/cuckoo        1.2                 444.8 MB
 ```
 
 ### Installation

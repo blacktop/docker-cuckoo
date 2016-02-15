@@ -64,7 +64,7 @@ RUN buildDeps='ca-certificates \
   && chown -R cuckoo:cuckoo /cuckoo \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
-  && pip install --upgrade pip setuptools wheel \
+  && pip install --upgrade pip wheel \
   && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
   && python utils/community.py -waf \

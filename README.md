@@ -16,10 +16,10 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 ```bash
 $ docker images
 
-REPOSITORY          TAG                 VIRTUAL SIZE
-blacktop/cuckoo        latest              448.5 MB
-blacktop/cuckoo        2.0-rc1             448.5 MB
-blacktop/cuckoo        1.2.0               444.8 MB
+REPOSITORY             TAG                 VIRTUAL SIZE
+blacktop/cuckoo        latest              327 MB
+blacktop/cuckoo        2.0                 327 MB
+blacktop/cuckoo        1.2                 444.8 MB
 ```
 
 ### Installation

@@ -12,6 +12,8 @@ MAINTAINER blacktop, https://github.com/blacktop
 # 	&& rm /usr/local/bin/gosu.asc \
 # 	&& chmod +x /usr/local/bin/gosu
 
+# TODO: ADD yara and volatility
+
 # Install Cuckoo Sandbox Required Dependencies
 RUN buildDeps='ca-certificates \
                build-essential \
@@ -42,6 +44,7 @@ RUN buildDeps='ca-certificates \
   && cd ssdeep-2.12 \
   && ./configure && make \
   && make install \
+  && echo "Install pydeep..." \
   && cd /tmp \
   && git clone https://github.com/kbandla/pydeep.git \
   && cd pydeep \

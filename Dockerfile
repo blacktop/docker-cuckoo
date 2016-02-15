@@ -13,6 +13,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 # 	&& chmod +x /usr/local/bin/gosu
 
 # TODO: ADD yara and volatility
+
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
@@ -32,7 +33,6 @@ RUN buildDeps='ca-certificates \
                curl' \
   && set -x \
   && apt-get update -qq \
-  && apt-get install -t testing libc6 \
   && apt-get install -yq $buildDeps \
                           python \
                           tcpdump \
@@ -64,7 +64,7 @@ RUN buildDeps='ca-certificates \
   && chown -R cuckoo:cuckoo /cuckoo \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
-  && pip install --upgrade pip \
+  && pip install --upgrade pip setuptools wheel \
   && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
   && python utils/community.py -wafb monitor \

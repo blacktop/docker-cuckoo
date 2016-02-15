@@ -65,7 +65,7 @@ $(docker-machine ip default)
 As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
 
 ```bash
-$ echo $(docker-machine ip dev) dockerhost | sudo tee -a /etc/hosts
+$ echo $(docker-machine ip default) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 

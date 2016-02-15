@@ -12,11 +12,18 @@ MAINTAINER blacktop, https://github.com/blacktop
 # 	&& rm /usr/local/bin/gosu.asc \
 # 	&& chmod +x /usr/local/bin/gosu
 
+# TODO: ADD yara and volatility
+ENV SSDEEP ssdeep-2.13
+
 # Install Cuckoo Sandbox Required Dependencies
 RUN buildDeps='ca-certificates \
                build-essential \
                libssl-dev \
                libffi-dev \
+               libxml2-dev \
+               libxslt1-dev \
+               libjpeg8-dev \
+               zlib1g-dev \
                python-dev \
                python-pip \
                apt-utils \
@@ -25,6 +32,7 @@ RUN buildDeps='ca-certificates \
                curl' \
   && set -x \
   && apt-get update -qq \
+  && apt-get install -t testing libc6 \
   && apt-get install -yq $buildDeps \
                           python \
                           tcpdump \
@@ -36,12 +44,19 @@ RUN buildDeps='ca-certificates \
                           python-chardet \
                           python-libvirt --no-install-recommends \
   && echo "Install ssdeep..." \
-  && curl -Ls http://downloads.sourceforge.net/project/ssdeep/ssdeep-2.12/ssdeep-2.12.tar.gz > /tmp/ssdeep.tar.gz \
+  && curl -Ls https://downloads.sourceforge.net/project/ssdeep/$SSDEEP/$SSDEEP.tar.gz > /tmp/$SSDEEP.tar.gz \
   && cd /tmp \
-  && tar -zxvf ssdeep.tar.gz \
-  && cd ssdeep-2.12 \
-  && ./configure && make \
+  && tar zxvf $SSDEEP.tar.gz \
+  && cd $SSDEEP \
+  && ./configure \
+  && make \
   && make install \
+  && echo "Install pydeep..." \
+  && cd /tmp \
+  && git clone https://github.com/kbandla/pydeep.git \
+  && cd pydeep \
+  && python setup.py build \
+  && python setup.py install \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
   && groupadd cuckoo \
@@ -50,6 +65,7 @@ RUN buildDeps='ca-certificates \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
   && pip install --upgrade pip \
+  && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
   && python utils/community.py -wafb monitor \
   && echo "Clean up unnecessary files..." \

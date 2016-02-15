@@ -67,7 +67,7 @@ RUN buildDeps='ca-certificates \
   && pip install --upgrade pip setuptools wheel \
   && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
-  && python utils/community.py -wafb monitor \
+  && python utils/community.py -waf \
   && echo "Clean up unnecessary files..." \
   && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \

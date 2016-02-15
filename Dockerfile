@@ -42,6 +42,11 @@ RUN buildDeps='ca-certificates \
   && cd ssdeep-2.12 \
   && ./configure && make \
   && make install \
+  && cd /tmp \
+  && git clone https://github.com/kbandla/pydeep.git \
+  && cd pydeep \
+  && python setup.py build \
+  && python setup.py install \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
   && groupadd cuckoo \
@@ -50,6 +55,7 @@ RUN buildDeps='ca-certificates \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
   && pip install --upgrade pip \
+  && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
   && python utils/community.py -wafb monitor \
   && echo "Clean up unnecessary files..." \

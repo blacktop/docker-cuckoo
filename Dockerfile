@@ -13,7 +13,6 @@ MAINTAINER blacktop, https://github.com/blacktop
 # 	&& chmod +x /usr/local/bin/gosu
 
 # Install Cuckoo Sandbox Required Dependencies
-RUN groupadd cuckoo && useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo
 RUN buildDeps='ca-certificates \
                build-essential \
                libssl-dev \
@@ -45,6 +44,8 @@ RUN buildDeps='ca-certificates \
   && make install \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
+  && groupadd cuckoo \
+  && useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo \
   && chown -R cuckoo:cuckoo /cuckoo \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \

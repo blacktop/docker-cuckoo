@@ -17,7 +17,7 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 $ docker images
 
 REPOSITORY             TAG                 VIRTUAL SIZE
-blacktop/cuckoo        latest              327 MB
+blacktop/cuckoo        latest              413 MB (with community sigs, etc.)
 blacktop/cuckoo        2.0                 327 MB
 blacktop/cuckoo        1.2                 444.8 MB
 ```
@@ -28,7 +28,7 @@ blacktop/cuckoo        1.2                 444.8 MB
 
 2. Install [docker-compose](https://docs.docker.com/compose/install/)
 
-3. Download [trusted build](https://registry.hub.docker.com/u/blacktop/cuckoo/) from public [Docker Registry](https://hub.docker.com/): `docker pull blacktop/cuckoo`
+3. Download [trusted build](https://hub.docker.com/r/blacktop/cuckoo/) from public [Docker Registry](https://hub.docker.com/): `docker pull blacktop/cuckoo`
 
 ### Usage
 ```bash

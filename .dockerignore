@@ -1,3 +1,8 @@
+# Ignore .git folder
+.git*
+
+.gitignore
 README.md
+LICENSE
 files/dashboard.png
 files/logo.png

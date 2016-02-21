@@ -6,10 +6,8 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 
 * [debian:wheezy](https://index.docker.io/_/debian/)
 
-### Image Sizes
-| Image | Virtual Size | cuckoo v1.2   | TOTAL     |
-|:------:|:-----------:|:-------------:|:---------:|
-| debian | 85.1  MB    | 456.9 MB      | 542 MB    |
+### Image Size
+[![](https://badge.imagelayers.io/blacktop/cuckoo:latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest 'Get your own badge on imagelayers.io')
 
 ### Image Tags
 ```bash

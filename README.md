@@ -62,6 +62,8 @@ Open a web browser and navigate to :
 $(docker-machine ip default)
 ```
 
+![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/submit.png)
+
 As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
 
 ```bash
@@ -69,7 +71,6 @@ $ echo $(docker-machine ip default) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
-![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/submit.png)
 ![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/dashboard.png)
 
 ### Todo

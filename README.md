@@ -3,29 +3,27 @@
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org)
 [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)][hub]
 [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)][hub]
-[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
-[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/cuckoo/latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest)
+[![Image Size](https://img.shields.io/imagelayers/image-size/blacktop/cuckoo/alpine.svg)](https://imagelayers.io/?images=blacktop/cuckoo:alpine)
+[![Image Layers](https://img.shields.io/imagelayers/layers/blacktop/cuckoo/alpine.svg)](https://imagelayers.io/?images=blacktop/cuckoo:alpine)
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoosandbox.org/) for a [Docker](https://www.docker.io/) [trusted build](https://hub.docker.com/r/blacktop/cuckoo/) published to the public [Docker Registry](https://hub.docker.com/).
 
 ### Dependencies
 
-<<<<<<< HEAD
-### Image Size
-[![](https://badge.imagelayers.io/blacktop/cuckoo:latest.svg)](https://imagelayers.io/?images=blacktop/cuckoo:latest 'Get your own badge on imagelayers.io')
-=======
-* [debian:wheezy](https://hub.docker.com/_/debian/)
->>>>>>> master
+* [blacktop/yara:3.4](https://hub.docker.com/r/blacktop/yara/)
+* [blacktop/volatility:2.5](https://hub.docker.com/r/blacktop/volatility/)
 
 ### Image Tags
 ```bash
 $ docker images
 
 REPOSITORY             TAG                 VIRTUAL SIZE
-blacktop/cuckoo        latest              413 MB (with community sigs, etc.)
+blacktop/cuckoo        latest              413 MB
+blacktop/cuckoo        alpine              296 MB
 blacktop/cuckoo        2.0                 327 MB
 blacktop/cuckoo        1.2                 444.8 MB
 ```
+> **latest** and **alpine** TAG contain all of cuckoosandbox/community
 
 ### Installation
 
@@ -67,6 +65,8 @@ Open a web browser and navigate to :
 $(docker-machine ip default)
 ```
 
+![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/submit.png)
+
 As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
 
 ```bash
@@ -74,7 +74,6 @@ $ echo $(docker-machine ip default) dockerhost | sudo tee -a /etc/hosts
 ```
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
-![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/submit.png)
 ![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/files/dashboard.png)
 
 ### Todo

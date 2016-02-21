@@ -1,48 +1,40 @@
-FROM debian:wheezy
+FROM blacktop/volatility
 
 MAINTAINER blacktop, https://github.com/blacktop
 
-# grab gosu for easy step-down from root
-# RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
-# RUN arch="$(dpkg --print-architecture)" \
-# 	&& set -x \
-# 	&& curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch" \
-# 	&& curl -o /usr/local/bin/gosu.asc -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch.asc" \
-# 	&& gpg --verify /usr/local/bin/gosu.asc \
-# 	&& rm /usr/local/bin/gosu.asc \
-# 	&& chmod +x /usr/local/bin/gosu
-
-# TODO: ADD yara and volatility
-
+ENV CUCKOO_VERSION 2.0-rc1
 ENV SSDEEP ssdeep-2.13
 
+# Grab gosu for easy step-down from root
+ENV GOSU_VERSION 1.7
+ENV GOSU_URL https://github.com/tianon/gosu/releases/download
+RUN apk-install -t gosu-deps dpkg curl \
+  && curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
+	&& chmod +x /usr/local/bin/gosu \
+  && apk del --purge gosu-deps
+
 # Install Cuckoo Sandbox Required Dependencies
-RUN buildDeps='ca-certificates \
-               build-essential \
-               libssl-dev \
-               libffi-dev \
-               libxml2-dev \
-               libxslt1-dev \
-               libjpeg8-dev \
-               zlib1g-dev \
-               python-dev \
-               python-pip \
-               apt-utils \
-               adduser \
-               numactl \
-               curl' \
+RUN apk add py-mitmproxy --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
+RUN apk-install tcpdump py-lxml py-chardet py-libvirt
+RUN apk-install -t build-deps autoconf \
+                              automake \
+                              build-base \
+                              curl \
+                              file-dev \
+                              git \
+                              jpeg-dev \
+                              libc-dev \
+                              libffi-dev \
+                              libstdc++ \
+                              libtool \
+                              libxml2-dev \
+                              libxslt-dev \
+                              openssl-dev \
+                              py-pip \
+                              py-six \
+                              python-dev \
+                              zlib-dev \
   && set -x \
-  && apt-get update -qq \
-  && apt-get install -yq $buildDeps \
-                          python \
-                          tcpdump \
-                          git-core \
-                          supervisor \
-                          python-dpkt \
-                          python-magic \
-                          python-gridfs \
-                          python-chardet \
-                          python-libvirt --no-install-recommends \
   && echo "Install ssdeep..." \
   && curl -Ls https://downloads.sourceforge.net/project/ssdeep/$SSDEEP/$SSDEEP.tar.gz > /tmp/$SSDEEP.tar.gz \
   && cd /tmp \
@@ -58,23 +50,46 @@ RUN buildDeps='ca-certificates \
   && python setup.py build \
   && python setup.py install \
   && echo "Cloning Cuckoo Sandbox..." \
-  && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
-  && groupadd cuckoo \
-  && useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo \
-  && chown -R cuckoo:cuckoo /cuckoo \
+  && git clone --branch $CUCKOO_VERSION https://github.com/cuckoosandbox/cuckoo.git /cuckoo \
   && cd /cuckoo \
-  && echo "Upgrade pip and install pip dependencies..." \
   && pip install --upgrade pip wheel \
-  && /usr/local/bin/pip install mitmproxy \
-  && /usr/local/bin/pip install -r requirements.txt \
+  && pip install alembic \
+                  beautifulsoup4 \
+                  cffi \
+                  chardet \
+                  cryptography \
+                  Django \
+                  dpkt \
+                  ecdsa \
+                  elasticsearch \
+                  enum34 \
+                  Flask \
+                  http://pefile.googlecode.com/files/pefile-1.2.10-139.tar.gz#egg=pefile \
+                  HTTPReplay \
+                  idna \
+                  ipaddress \
+                  jsbeautifier \
+                  Mako \
+                  ndg-httpsclient \
+                  oletools \
+                  pyasn1 \
+                  pycparser \
+                  pymongo \
+                  pyOpenSSL \
+                  python-dateutil \
+                  python-editor \
+                  python-magic \
+                  requests \
+                  SQLAlchemy \
+                  tlslite-ng \
+                  wakeonlan \
   && python utils/community.py -waf \
   && echo "Clean up unnecessary files..." \
-  && apt-get purge -y --auto-remove $buildDeps \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/lib/mongodb
+  && rm -rf /tmp/* \
+  && apk del --purge build-deps
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY conf/reporting.conf /cuckoo/conf/reporting.conf
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME ["/cuckoo/conf"]

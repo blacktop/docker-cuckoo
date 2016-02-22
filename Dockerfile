@@ -65,11 +65,10 @@ RUN buildDeps='ca-certificates \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
   && export PIP_NO_CACHE_DIR=off \
-  && export PIP_DISABLE_PIP_VERSION_CHECK=on \  
+  && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel \
   && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \
-  && python utils/community.py -waf \
   && echo "Clean up unnecessary files..." \
   && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \

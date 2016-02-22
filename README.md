@@ -19,9 +19,9 @@ $ docker images
 
 REPOSITORY             TAG                 VIRTUAL SIZE
 blacktop/cuckoo        latest              413 MB
-blacktop/cuckoo        alpine              296 MB
+blacktop/cuckoo        alpine              271 MB
 blacktop/cuckoo        2.0                 327 MB
-blacktop/cuckoo        1.2                 444.8 MB
+blacktop/cuckoo        1.2                 445 MB
 ```
 > **latest** and **alpine** TAG contain all of cuckoosandbox/community
 

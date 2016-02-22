@@ -1,21 +1,50 @@
 #!/bin/bash
+
 set -e
 
-if [[ "$*" == npm*start* ]]; then
-	if [ ! -e "$GHOST_CONTENT/config.js" ]; then
-		tar -c --one-file-system -C "$GHOST_SOURCE/content" . | tar xC "$GHOST_CONTENT"
+# first check if we're passing flags, if so
+# prepend with sentry
+# if [ "${1:0:1}" = '-' ]; then
+# 	set -- sentry "$@"
+# fi
 
-		sed -r '
-			s/127\.0\.0\.1/0.0.0.0/g;
-			s!path.join\(__dirname, (.)/content!path.join(process.env.GHOST_CONTENT, \1!g;
-		' "$GHOST_SOURCE/config.example.js" > "$GHOST_CONTENT/config.js"
-	fi
+case "$1" in
+	web)
+		# Change the ownership of /cuckoo to cuckoo
+		chown -R cuckoo:cuckoo /cuckoo
 
-	ln -sf "$GHOST_CONTENT/config.js" "$GHOST_SOURCE/config.js"
+		set -- gosu cuckoo exec `cd web && python manage.py runserver 0.0.0.0:8080`
+	;;
+	daemon)
+		chown -R cuckoo:cuckoo /cuckoo
 
-	chown -R user "$GHOST_CONTENT"
-
-	set -- gosu user "$@"
-fi
+		set -- gosu cuckoo exec python cuckoo.py
+	;;
+esac
 
 exec "$@"
+
+
+# #!/bin/bash
+#
+# set -e
+#
+# # Add elasticsearch as command if needed
+# if [ "${1:0:1}" = '-' ]; then
+# 	set -- elasticsearch "$@"
+# fi
+#
+# # Drop root privileges if we are running elasticsearch
+# # allow the container to be started with `--user`
+# if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
+# 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
+# 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
+#
+# 	set -- gosu elasticsearch "$@"
+# 	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
+# fi
+#
+# # As argument is not related to elasticsearch,
+# # then assume that user wants to run his own process,
+# # for example a `bash` shell to explore this image
+# exec "$@"

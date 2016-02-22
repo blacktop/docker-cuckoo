@@ -5,13 +5,13 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV CUCKOO_VERSION 2.0-rc1
 ENV SSDEEP ssdeep-2.13
 
-# Grab gosu for easy step-down from root
-ENV GOSU_VERSION 1.7
-ENV GOSU_URL https://github.com/tianon/gosu/releases/download
-RUN apk-install -t gosu-deps dpkg curl \
-  && curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
-	&& chmod +x /usr/local/bin/gosu \
-  && apk del --purge gosu-deps
+# # Grab gosu for easy step-down from root
+# ENV GOSU_VERSION 1.7
+# ENV GOSU_URL https://github.com/tianon/gosu/releases/download
+# RUN apk-install -t gosu-deps dpkg curl \
+#   && curl -o /usr/local/bin/gosu -sSL "${GOSU_URL}/${GOSU_VERSION}/gosu-$(dpkg --print-architecture)" \
+# 	&& chmod +x /usr/local/bin/gosu \
+#   && apk del --purge gosu-deps
 
 # Install Cuckoo Sandbox Required Dependencies
 RUN apk add py-mitmproxy --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
@@ -31,7 +31,6 @@ RUN apk-install -t build-deps autoconf \
                               libxslt-dev \
                               openssl-dev \
                               py-pip \
-                              py-six \
                               python-dev \
                               zlib-dev \
   && set -x \
@@ -51,7 +50,12 @@ RUN apk-install -t build-deps autoconf \
   && python setup.py install \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --branch $CUCKOO_VERSION https://github.com/cuckoosandbox/cuckoo.git /cuckoo \
+  && adduser -DH cuckoo \
   && cd /cuckoo \
+  && python utils/community.py -waf \
+  && chown -R cuckoo:cuckoo /cuckoo \
+  && export PIP_NO_CACHE_DIR=off \
+  && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel \
   && pip install alembic \
                   beautifulsoup4 \
@@ -63,7 +67,8 @@ RUN apk-install -t build-deps autoconf \
                   ecdsa \
                   elasticsearch \
                   enum34 \
-                  Flask \
+                  flask \
+                  flask-sqlalchemy \
                   http://pefile.googlecode.com/files/pefile-1.2.10-139.tar.gz#egg=pefile \
                   HTTPReplay \
                   idna \
@@ -81,23 +86,22 @@ RUN apk-install -t build-deps autoconf \
                   python-magic \
                   requests \
                   SQLAlchemy \
+                  six \
                   tlslite-ng \
                   wakeonlan \
-  && python utils/community.py -waf \
   && echo "Clean up unnecessary files..." \
   && rm -rf /tmp/* \
   && apk del --purge build-deps
 
-COPY conf/reporting.conf /cuckoo/conf/reporting.conf
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-# COPY docker-entrypoint.sh /entrypoint.sh
+COPY conf /cuckoo/conf
+# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME ["/cuckoo/conf"]
 
-WORKDIR /cuckoo/web
-
 EXPOSE 80
 
-# ENTRYPOINT ["/entrypoint.sh"]
-
-CMD ["/usr/bin/supervisord"]
+USER cuckoo
+WORKDIR /cuckoo/web
+ENTRYPOINT []
+CMD python manage.py runserver 0.0.0.0:8080

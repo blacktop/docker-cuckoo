@@ -28,9 +28,7 @@ blacktop/cuckoo        1.2                 444.8 MB
 ### Installation
 
 1. Install [Docker](https://www.docker.io/).
-
 2. Install [docker-compose](https://docs.docker.com/compose/install/)
-
 3. Download [trusted build](https://hub.docker.com/r/blacktop/cuckoo/) from public [Docker Registry](https://hub.docker.com/): `docker pull blacktop/cuckoo`
 
 ### Usage
@@ -79,7 +77,7 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 ### Todo
 - [x] Install/Run Cuckoo Sandbox
 - [x] Break mongo out into a separate container using docker-compose
-- [ ] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
+- [x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 - [ ] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 - [ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
 

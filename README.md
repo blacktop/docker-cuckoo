@@ -27,9 +27,7 @@ blacktop/cuckoo        1.2                 444.8 MB
 ### Installation
 
 1. Install [Docker](https://www.docker.io/).
-
 2. Install [docker-compose](https://docs.docker.com/compose/install/)
-
 3. Download [trusted build](https://hub.docker.com/r/blacktop/cuckoo/) from public [Docker Registry](https://hub.docker.com/): `docker pull blacktop/cuckoo`
 
 ### Usage

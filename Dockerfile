@@ -12,9 +12,9 @@ MAINTAINER blacktop, https://github.com/blacktop
 # 	&& rm /usr/local/bin/gosu.asc \
 # 	&& chmod +x /usr/local/bin/gosu
 
-# TODO: ADD yara and volatility
-
 ENV SSDEEP ssdeep-2.13
+ENV YARA 3.4.0
+ENV VOLATILITY 2.5
 
 # Install Cuckoo Sandbox Required Dependencies
 RUN buildDeps='ca-certificates \
@@ -57,6 +57,25 @@ RUN buildDeps='ca-certificates \
   && cd pydeep \
   && python setup.py build \
   && python setup.py install \
+  && echo "Installing YARA..." \
+  && cd /tmp \
+  && wget https://github.com/plusvic/yara/archive/v$YARA.tar.gz \
+  && tar xzf v$YARA.tar.gz \
+  && cd yara-$YARA \
+  && ./bootstrap.sh \
+  && ./configure --with-crypto --enable-cuckoo --enable-magic \
+  && make \
+  && make install \
+  && cd yara-python \
+  && python setup.py build \
+  && python setup.py install\
+  && cd /tmp \
+  && wget https://github.com/volatilityfoundation/volatility/archive/$VOLATILITY.tar.gz \
+  && tar xzf $VOLATILITY.tar.gz \
+  && cd volatility-$VOLATILITY \
+  && python setup.py build \
+  && python setup.py install \
+  && cd /tmp \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
   && groupadd cuckoo \
@@ -74,6 +93,7 @@ RUN buildDeps='ca-certificates \
   && apt-get purge -y --auto-remove $buildDeps \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/lib/mongodb
+
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY conf/reporting.conf /cuckoo/conf/reporting.conf

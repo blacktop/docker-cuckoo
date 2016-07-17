@@ -4,5 +4,5 @@
 .gitignore
 README.md
 LICENSE
-files/dashboard.png
-files/logo.png
+files*
+docker-compose.yml

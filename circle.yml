@@ -16,8 +16,8 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 80:8000 circleci/cuckoo python manage.py runserver 0.0.0.0:8000; sleep 5
-    - curl --retry 10 --retry-delay 5 -v http://localhost
+    - docker run -d -p 8000:8000 circleci/cuckoo manage.py runserver 0.0.0.0:8000; sleep 5
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8000
 
 deployment:
   # master:

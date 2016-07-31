@@ -10,9 +10,8 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" blacktop/$(NAME)
 
 build:
-	cd 2.0
 	rm -rf build && mkdir build
-	docker build -t $(NAME):$(VERSION) .;sleep 5;
+	docker build -t $(NAME):$(VERSION) .;sleep 3;
 	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" $(NAME):$(VERSION))-blue/g' ../README.md
 	docker save $(NAME):$(VERSION) | gzip -9 > build/$(NAME)_$(VERSION).tgz
 

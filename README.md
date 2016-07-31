@@ -33,12 +33,11 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 ```bash
 REPOSITORY             TAG                 VIRTUAL SIZE
 blacktop/cuckoo        latest              366 MB
-blacktop/cuckoo        alpine              267 MB
 blacktop/cuckoo        2.0                 334 MB
 blacktop/cuckoo        1.2                 445 MB
 ```
 
-> **latest** and **alpine** TAG contain all of cuckoosandbox/community
+> **latest** and **2.0** TAG contain all of cuckoosandbox/community
 
 ### Installation
 

@@ -6,6 +6,7 @@ ENV CUCKOO_VERSION 2.0-rc1
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
+COPY requirements.txt /tmp/requirements.txt
 RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto
 RUN apk-install -t .build-deps \
                    openssl-dev \
@@ -49,7 +50,7 @@ RUN apk-install -t .build-deps \
   && pip install --upgrade pip wheel \
   && echo "Install mitmproxy..." \
   && LDFLAGS=-L/lib pip install mitmproxy \
-  && pip install -r requirements.txt \
+  && pip install -r /tmp/requirements.txt \
   && python utils/community.py -waf \
   && echo "Clean up unnecessary files..." \
   && rm -rf /tmp/* \

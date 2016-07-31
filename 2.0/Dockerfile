@@ -58,14 +58,14 @@ RUN buildDeps='ca-certificates \
   && python setup.py build \
   && python setup.py install \
   && echo "Cloning Cuckoo Sandbox..." \
-  && git clone --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
+  && git clone --recursive --branch 2.0-rc1 git://github.com/cuckoobox/cuckoo.git /cuckoo \
   && groupadd cuckoo \
   && useradd --create-home --home-dir /home/cuckoo -g cuckoo cuckoo \
   && chown -R cuckoo:cuckoo /cuckoo \
   && cd /cuckoo \
   && echo "Upgrade pip and install pip dependencies..." \
   && export PIP_NO_CACHE_DIR=off \
-  && export PIP_DISABLE_PIP_VERSION_CHECK=on \  
+  && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel \
   && /usr/local/bin/pip install mitmproxy \
   && /usr/local/bin/pip install -r requirements.txt \

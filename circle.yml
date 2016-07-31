@@ -6,17 +6,17 @@ general:
   build_dir: "2.0"
 
 dependencies:
-  # pre:
-  #   - make circleci
+  cache_directories:
+    - "~/docker"
   override:
     - docker info
-    - make build
-  post:
-    - cp build/* $CIRCLE_ARTIFACTS
+    - if [[ -e ~/docker/image.tar ]]; then docker load --input ~/docker/image.tar; fi
+    - docker build -t circleci/cuckoo .
+    - mkdir -p ~/docker; docker save circleci/cuckoo > ~/docker/image.tar
 
 test:
   override:
-    - docker run -d -p 80:8000 cuckoo:$(cat VERSION) python manage.py runserver 0.0.0.0:8000; sleep 5
+    - docker run -d -p 80:8000 circleci/cuckoo python manage.py runserver 0.0.0.0:8000; sleep 5
     - curl --retry 10 --retry-delay 5 -v http://localhost
 
 deployment:

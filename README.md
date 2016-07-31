@@ -1,4 +1,4 @@
-![cuckoo-logo](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/docs/img/logo.png) Dockerfile
+![cuckoo-logo](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/logo.png) Dockerfile
 =========================================================================================================
 
 [![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image--blue.svg)](https://hub.docker.com/r/blacktop/bro/)
@@ -60,7 +60,7 @@ $ eval $(docker-machine env)
 ### Getting Started
 
 ```bash
-$ curl -sL https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/docker-compose.yml > docker-compose.yml
+$ curl -sL https://github.com/blacktop/docker-cuckoo/raw/master/docker-compose.yml > docker-compose.yml
 $ docker-compose up -d
 ```
 
@@ -83,7 +83,7 @@ Open a web browser and navigate to :
 $(docker-machine ip)
 ```
 
-![cuckoo-submit](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/docs/img/submit.png)
+![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
 
 #### Tips and Tricks
 
@@ -95,7 +95,7 @@ $ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
 
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
-![cuckoo-dashboard](https://raw.githubusercontent.com/blacktop/docker-cuckoo/master/docs/img/dashboard.png)
+![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
 
 ### Issues
 

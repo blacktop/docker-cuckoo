@@ -114,6 +114,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
+- [ ] Web reverse proxy via Nginx with SSL
 
 ### CHANGELOG
 

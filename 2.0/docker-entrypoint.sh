@@ -18,7 +18,7 @@ if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo
 
-	set -- gosu cuckoo /sbin/tini -- python cuckoo.py "$@"
+	set -- gosu cuckoo /sbin/tini -- python cuckoo.py
 
 elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
 

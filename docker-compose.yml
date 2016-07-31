@@ -1,13 +1,27 @@
 version: "2"
 
 services:
-  cuckoo:
-    build: 2.0/
+  # cuckoo:
+  #   image: blacktop/cuckoo:2.0
+  #   command: daemon
+  #   networks:
+  #     - cuckoo
+  web:
+    image: blacktop/cuckoo:2.0
     ports:
-      - "80:8000"
+      - "80:31337"
     links:
       - mongo
-    command: /usr/bin/python manage.py runserver 0.0.0.0:8000
+    command: web
+    networks:
+      - cuckoo
+  api:
+    image: blacktop/cuckoo:2.0
+    ports:
+      - "80:1337"
+    links:
+      - mongo
+    command: api
     networks:
       - cuckoo
   # web:

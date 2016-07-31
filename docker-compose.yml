@@ -18,7 +18,7 @@ services:
   api:
     image: blacktop/cuckoo:2.0
     ports:
-      - "80:1337"
+      - "8000:1337"
     links:
       - mongo
     command: api

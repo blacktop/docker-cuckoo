@@ -63,6 +63,8 @@ VOLUME ["/cuckoo/conf"]
 
 EXPOSE 1337 31337
 
+WORKDIR /cuckoo
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD help

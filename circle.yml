@@ -3,13 +3,13 @@ machine:
     - docker
 
 general:
-  build_dir: 2.0
+  build_dir: "2.0"
 
 dependencies:
   pre:
     - make circleci
   override:
-    - docker info    
+    - docker info
     - make build
   post:
     - cp build/* $CIRCLE_ARTIFACTS

@@ -61,9 +61,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME ["/cuckoo/conf"]
 
-EXPOSE 80
-
-WORKDIR /cuckoo/web
+EXPOSE 1337 31337
 
 ENTRYPOINT ["/entrypoint.sh"]
 

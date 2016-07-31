@@ -75,7 +75,7 @@ Now navigate to `$(docker-machine ip)`
 
 ```bash
 $ docker run -d --name mongo mongo
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro --link mongo -p 80:80 blacktop/cuckoo
+$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro --link mongo -p 80:31337 blacktop/cuckoo web
 ```
 
 Open a web browser and navigate to :
@@ -107,7 +107,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Install/Run Cuckoo Sandbox
 -	[x] Break mongo out into a separate container using docker-compose
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
--	[ ] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
+-	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
 
 ### CHANGELOG

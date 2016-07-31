@@ -1,0 +1,8 @@
+# Ignore .git folder
+.git*
+
+.gitignore
+README.md
+LICENSE
+files*
+docker-compose.yml

@@ -2,7 +2,7 @@ version: "2"
 
 services:
   cuckoo:
-    build: .
+    build: 2.0/
     ports:
       - "80:8000"
     links:

@@ -16,6 +16,7 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 	-	[Documentation](#documentation)
 		-	[Usage](#usage)
 		-	[Tips and Tricks](#tips-and-tricks)
+	-	[Known Issues](#known-issues)
 	-	[Issues](#issues)
 	-	[Credits](#credits)
 	-	[Todo](#todo)
@@ -97,6 +98,10 @@ $ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 ![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
+
+### Known Issues
+
+-	Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. :wink:
 
 ### Issues
 

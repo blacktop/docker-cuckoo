@@ -4,5 +4,9 @@
 .gitignore
 README.md
 LICENSE
-files*
+docs
+nginx
 docker-compose.yml
+build
+release
+Makefile

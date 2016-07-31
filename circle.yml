@@ -6,8 +6,8 @@ general:
   build_dir: "2.0"
 
 dependencies:
-  pre:
-    - make circleci
+  # pre:
+  #   - make circleci
   override:
     - docker info
     - make build

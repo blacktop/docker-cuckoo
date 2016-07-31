@@ -41,7 +41,6 @@ RUN apk-install -t .build-deps \
   && echo "Cloning Cuckoo Sandbox..." \
   && git clone --recursive https://github.com/cuckoosandbox/cuckoo.git /cuckoo \
   && adduser -DH cuckoo \
-  && chown -R cuckoo:cuckoo /cuckoo \
   && cd /cuckoo \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
@@ -64,6 +63,6 @@ EXPOSE 80
 
 WORKDIR /cuckoo/web
 
-ENTRYPOINT ["gosu","cuckoo","/sbin/tini","--","python"]
+ENTRYPOINT ["/entrypoint.sh"]
 
-CMD manage.py runserver 0.0.0.0:8080
+CMD help

@@ -1,21 +1,72 @@
-#!/bin/bash
+#!/bin/sh
+
 set -e
 
-if [[ "$*" == npm*start* ]]; then
-	if [ ! -e "$GHOST_CONTENT/config.js" ]; then
-		tar -c --one-file-system -C "$GHOST_SOURCE/content" . | tar xC "$GHOST_CONTENT"
+# Add cuckoo as command if needed
+if [ "${1:0:1}" = '-' ]; then
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/
 
-		sed -r '
-			s/127\.0\.0\.1/0.0.0.0/g;
-			s!path.join\(__dirname, (.)/content!path.join(process.env.GHOST_CONTENT, \1!g;
-		' "$GHOST_SOURCE/config.example.js" > "$GHOST_CONTENT/config.js"
-	fi
+	set -- python cuckoo.py "$@"
+fi
 
-	ln -sf "$GHOST_CONTENT/config.js" "$GHOST_SOURCE/config.js"
+# Drop root privileges if we are running cuckoo-daemon
+if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
 
-	chown -R user "$GHOST_CONTENT"
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo
 
-	set -- gosu user "$@"
+	set -- gosu cuckoo /sbin/tini -- python cuckoo.py "$@"
+
+elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/utils
+
+	set -- gosu cuckoo /sbin/tini -- python submit.py "$@"
+
+elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/utils
+
+	set -- gosu cuckoo /sbin/tini -- python api.py --host 0.0.0.0 --port 1337
+
+elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/web
+
+	set -- gosu cuckoo /sbin/tini -- python manage.py runserver 0.0.0.0:31337
+
+elif [ "$1" = 'distributed' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/distributed
+
+	set -- gosu cuckoo /sbin/tini -- python app.py "$@"
+
+elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/utils
+
+	set -- gosu cuckoo /sbin/tini -- python stats.py "$@"
+
+elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo
+
+	set -- gosu cuckoo /sbin/tini -- python cuckoo.py --help
 fi
 
 exec "$@"

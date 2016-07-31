@@ -19,6 +19,8 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 	-	[Issues](#issues)
 	-	[Credits](#credits)
 	-	[Todo](#todo)
+	-	[CHANGELOG](#changelog)
+	-	[Contributing](#contributing)
 	-	[License](#license)
 
 ### Dependencies
@@ -101,8 +103,6 @@ Now you can navigate to [http://dockerhost](http://dockerhost) from your host
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-cuckoo/issues/new) and I'll get right on it.
 
-### Credits
-
 ### Todo
 
 -	[x] Install/Run Cuckoo Sandbox
@@ -110,6 +110,16 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 -	[ ] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
+
+### CHANGELOG
+
+See [`CHANGELOG.md`](https://github.com/blacktop/docker-cuckoo/blob/master/CHANGELOG.md)
+
+### Contributing
+
+[See all contributors on GitHub](https://github.com/blacktop/docker-cuckoo/graphs/contributors).
+
+Please update the [CHANGELOG.md](https://github.com/blacktop/docker-cuckoo/blob/master/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
 
 ### License
 

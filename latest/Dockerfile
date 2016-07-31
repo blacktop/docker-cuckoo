@@ -5,7 +5,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
-RUN apk-install tcpdump py-lxml py-chardet py-libvirt
+RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto
 RUN apk-install -t .build-deps \
                    openssl-dev \
                    libxslt-dev \

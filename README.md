@@ -127,7 +127,6 @@ $ docker-machine ip
 ```
 
 ![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
-
 ![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
 
 #### Available subcommands

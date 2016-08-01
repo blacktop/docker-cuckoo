@@ -38,8 +38,13 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - cuckoo-data:/data/db
     networks:
       - cuckoo
+
+volumes:
+  cuckoo-data:
 
 networks:
   cuckoo:

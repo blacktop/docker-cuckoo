@@ -56,7 +56,6 @@ RUN apk-install -t .build-deps \
   && apk del --purge .build-deps
 
 COPY conf /cuckoo/conf
-# COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY docker-entrypoint.sh /entrypoint.sh
 
 VOLUME ["/cuckoo/conf"]

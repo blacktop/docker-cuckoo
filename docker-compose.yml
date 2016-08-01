@@ -42,6 +42,14 @@ services:
       - cuckoo-data:/data/db
     networks:
       - cuckoo
+  elasticsearch:
+    image: elasticsearch
+    ports:
+      - "9200:9200"
+    volumes:
+      - cuckoo-data:/usr/share/elasticsearch/data
+    networks:
+      - cuckoo
 
 volumes:
   cuckoo-data:

@@ -147,6 +147,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
 - [ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
 -	[ ] Web reverse proxy via Nginx with SSL
+- [ ] Add snort or suricata or both
 
 ### CHANGELOG
 

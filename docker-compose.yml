@@ -7,7 +7,7 @@ services:
   #   networks:
   #     - cuckoo
   web:
-    image: blacktop/cuckoo:2.0
+    image: blacktop/cuckoo
     ports:
       - "80:31337"
     links:
@@ -16,7 +16,7 @@ services:
     networks:
       - cuckoo
   api:
-    image: blacktop/cuckoo:2.0
+    image: blacktop/cuckoo
     ports:
       - "8000:1337"
     links:

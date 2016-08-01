@@ -1,0 +1,19 @@
+upstream _uwsgi_cuckoo_api {
+    server unix:/run/uwsgi/app/cuckoo-api/socket;
+}
+
+# HTTP server
+#
+server {
+    listen 8090;
+    listen [::]:8090 ipv6only=on;
+
+    # REST API app
+    location / {
+        uwsgi_pass  _uwsgi_cuckoo_api;
+        include     uwsgi_params;
+    }
+}
+
+# $ sudo ln -s /etc/uwsgi/apps-available/cuckoo-api.ini /etc/uwsgi/apps-enabled/
+# $ sudo service uwsgi start cuckoo-api    # or reload, if already running

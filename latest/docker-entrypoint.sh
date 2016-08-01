@@ -18,7 +18,7 @@ if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo
 
-	set -- gosu cuckoo /sbin/tini -- python cuckoo.py
+	set -- gosu cuckoo /sbin/tini -- python cuckoo.py "${@:2}"
 
 elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
 
@@ -26,7 +26,15 @@ elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
-	set -- gosu cuckoo /sbin/tini -- python submit.py "$@"
+	set -- gosu cuckoo /sbin/tini -- python submit.py "${@:2}"
+
+elif [ "$1" = 'process' -a "$(id -u)" = '0' ]; then
+
+	# Change the ownership of /cuckoo to cuckoo
+	chown -R cuckoo:cuckoo /cuckoo
+	cd /cuckoo/utils
+
+	set -- gosu cuckoo /sbin/tini -- python process.py "${@:2}"
 
 elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
 
@@ -50,7 +58,7 @@ elif [ "$1" = 'distributed' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/distributed
 
-	set -- gosu cuckoo /sbin/tini -- python app.py "$@"
+	set -- gosu cuckoo /sbin/tini -- python app.py "${@:2}"
 
 elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
 
@@ -58,7 +66,7 @@ elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
-	set -- gosu cuckoo /sbin/tini -- python stats.py "$@"
+	set -- gosu cuckoo /sbin/tini -- python stats.py "${@:2}"
 
 elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
 

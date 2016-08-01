@@ -64,9 +64,36 @@ $ eval $(docker-machine env)
 ```bash
 $ curl -sL https://github.com/blacktop/docker-cuckoo/raw/master/docker-compose.yml > docker-compose.yml
 $ docker-compose up -d
+# Cuckoo API is listening on port 8000 now.
+$ curl $(docker-machine ip):8000/cuckoo/status
 ```
 
-Now navigate to `$(docker-machine ip)`
+```json
+{
+  "cpuload": [
+    0.01220703125,
+    0.03515625,
+    0.025390625
+  ],
+  "diskspace": {},
+  "hostname": "195855fb100f",
+  "machines": {
+    "available": 0,
+    "total": 0
+  },
+  "memory": 88.55692015425926,
+  "tasks": {
+    "completed": 0,
+    "pending": 0,
+    "reported": 0,
+    "running": 0,
+    "total": 0
+  },
+  "version": "2.0-dev"
+}
+```
+
+Now navigate to `http://$(docker-machine ip)`
 
 ### Documentation
 
@@ -82,7 +109,7 @@ $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro --link mongo -p 80:31337 blacktop
 Open a web browser and navigate to :
 
 ```bash
-$(docker-machine ip)
+$ docker-machine ip
 ```
 
 ![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
@@ -114,7 +141,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
-- [ ] Web reverse proxy via Nginx with SSL
+-	[ ] Web reverse proxy via Nginx with SSL
 
 ### CHANGELOG
 

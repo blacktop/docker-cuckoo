@@ -59,6 +59,8 @@ $ docker-machine create --driver virtualbox default
 $ eval $(docker-machine env)
 ```
 
+Or install [Docker for Mac](https://docs.docker.com/docker-for-mac/)
+
 ### Getting Started
 
 ```bash

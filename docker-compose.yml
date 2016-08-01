@@ -12,6 +12,7 @@ services:
       - "80:31337"
     links:
       - mongo
+      - elasticsearch
     command: web
     networks:
       - cuckoo

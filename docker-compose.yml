@@ -20,8 +20,8 @@ services:
     image: blacktop/cuckoo
     ports:
       - "8000:1337"
-    # links:
-    #   - postgres
+    links:
+      - postgres
     command: api
     networks:
       - cuckoo
@@ -40,7 +40,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - cuckoo-data:/data/db
+      - mongo-data:/data/db
     networks:
       - cuckoo
   elasticsearch:
@@ -48,22 +48,28 @@ services:
     ports:
       - "9200:9200"
     volumes:
-      - cuckoo-data:/usr/share/elasticsearch/data
+      - es-data:/usr/share/elasticsearch/data
     networks:
       - cuckoo
-  # postgres:
-  #   image: postgres
-  #   ports:
-  #     - "5432:5432"
-  #   environment:
-  #     POSTGRES_PASSWORD: cuckoo
-  #   volumes:
-  #     - cuckoo-data:/var/lib/postgresql/data
-  #   networks:
-  #     - cuckoo
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cuckoo
+      PGDATA : /var/lib/postgresql/data/pgdata
+      # POSTGRES_INITDB_ARGS: --data-checksums
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - cuckoo
 
 volumes:
   cuckoo-data:
+  mongo-data:
+  es-data:
+  postgres-data:
 
 networks:
   cuckoo:

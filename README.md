@@ -105,10 +105,10 @@ Now navigate to `http://$(docker-machine ip)`
 
 ```bash
 $ docker run -d --name mongo mongo
+$ docker run -d --name postgres -e POSTGRES_PASSWORD=cuckoo postgres
 $ docker run -d --name elasticsearch elasticsearch
 $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
-								--link mongo \
-								--link elasticsearch \
+								--link postgres \
 								-p 8000:1337 \
 								blacktop/cuckoo api
 $ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \

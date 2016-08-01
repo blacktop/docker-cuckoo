@@ -40,7 +40,7 @@ blacktop/cuckoo     2.0                 295.6 MB
 blacktop/cuckoo     1.2                 238.1 MB
 ```
 
-> NOTE: tags **latest** and **2.0** contain all of cuckoosandbox/community
+> NOTE: tags **latest** and **2.0** contain all of `cuckoosandbox/community`
 
 ### Installation
 
@@ -128,6 +128,8 @@ $ docker-machine ip
 
 ![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
 
+![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
+
 #### Available subcommands
 
 ```bash
@@ -150,8 +152,6 @@ $ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
 ```
 
 Now you can navigate to [http://dockerhost](http://dockerhost) from your host
-
-![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
 
 ### Known Issues
 

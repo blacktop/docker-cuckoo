@@ -3,21 +3,36 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[unreleased][unreleased]
-------------------------
+[latest] - 2016-07-31
+---------------------
 
 ### Fixed
 
 ### Added
 
+-	docker-entryporint.sh
+-	elasticsearch added to docker-compose.yml
+-	data volume added to docker-compose.yml
+-	cuckoo API added to docker-compose.yml
+-	tini
+-	gosu
+-	circleCI
+-	table of contents in README
+
 ### Removed
+
+-	supervisord in favor of entrypoint.sh pattern
 
 ### Changed
 
-[2.0-rc1] - 2016-07-31
-----------------------
+-	moved away from `debian` base image in favor of the smaller `alpine`
+
+[2.0] - 2016-07-31
+------------------
 
 ### Fixed
+
+-	fixed bad items in requirements.txt
 
 ### Added
 
@@ -33,5 +48,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 ### Removed
+
+-	cuckoosandbox/community was removed because it was failing for some reason
 
 ### Changed

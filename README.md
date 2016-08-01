@@ -1,5 +1,5 @@
 ![cuckoo-logo](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/logo.png) Dockerfile-beta
-=================================================================================================
+======================================================================================================
 
 [![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-295.6 MB-blue.svg)](https://hub.docker.com/r/blacktop/bro/)
 
@@ -17,10 +17,10 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](http://www.cuckoos
 	-	[Getting Started](#getting-started)
 	-	[Documentation](#documentation)
 		-	[Usage](#usage)
+		-	[Available subcommands](#available-subcommands)
 		-	[Tips and Tricks](#tips-and-tricks)
 	-	[Known Issues](#known-issues)
 	-	[Issues](#issues)
-	-	[Credits](#credits)
 	-	[Todo](#todo)
 	-	[CHANGELOG](#changelog)
 	-	[Contributing](#contributing)
@@ -103,12 +103,22 @@ Now navigate to `http://$(docker-machine ip)`
 
 #### Usage
 
-> If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so:
-
 ```bash
 $ docker run -d --name mongo mongo
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro --link mongo -p 80:31337 blacktop/cuckoo web
+$ docker run -d --name elasticsearch elasticsearch
+$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
+								--link mongo \
+								--link elasticsearch \
+								-p 8000:1337 \
+								blacktop/cuckoo api
+$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
+								--link mongo \
+								--link elasticsearch \
+								-p 8000:1337 \
+								blacktop/cuckoo web
 ```
+
+> NOTE: If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like is shown above.
 
 Open a web browser and navigate to :
 
@@ -117,6 +127,19 @@ $ docker-machine ip
 ```
 
 ![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
+
+#### Available subcommands
+
+```bash
+docker run blacktop/cuckoo daemon   # start cuckoo.py
+docker run blacktop/cuckoo submit   # run utils/submit.py
+docker run blacktop/cuckoo process  # run utils/process.py
+docker run blacktop/cuckoo api      # starts RESTFull API
+docker run blacktop/cuckoo web      # starts web UI
+docker run blacktop/cuckoo distributed  # runs distributed/app.py
+docker run blacktop/cuckoo stats    # utils/stats.py
+docker run blacktop/cuckoo help     # runs cuckoo.py --help
+```
 
 #### Tips and Tricks
 
@@ -145,9 +168,9 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
-- [ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
+-	[ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
 -	[ ] Web reverse proxy via Nginx with SSL
-- [ ] Add snort or suricata or both
+-	[ ] Add snort or suricata or both
 
 ### CHANGELOG
 

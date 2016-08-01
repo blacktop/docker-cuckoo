@@ -13,7 +13,6 @@ services:
     links:
       - mongo
       - elasticsearch
-      # - postgres
     command: web
     networks:
       - cuckoo
@@ -21,14 +20,12 @@ services:
     image: blacktop/cuckoo
     ports:
       - "8000:1337"
-    links:
-      - mongo
-      - elasticsearch
-      # - postgres
+    # links:
+    #   - postgres
     command: api
     networks:
       - cuckoo
-  # web:
+  # nginx:
   #   build: nginx/.
   #   depends_on:
   #     - mongo
@@ -59,10 +56,7 @@ services:
   #   ports:
   #     - "5432:5432"
   #   environment:
-  #     POSTGRES_DB: cuckoo
-  #     POSTGRES_USER: cuckoo
   #     POSTGRES_PASSWORD: cuckoo
-  #   command: initdb
   #   volumes:
   #     - cuckoo-data:/var/lib/postgresql/data
   #   networks:

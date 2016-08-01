@@ -11,7 +11,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 -	docker-entryporint.sh
--	elasticsearch added to docker-compose.yml
 -	postgres added to docker-compose.yml
 -	data volume added to docker-compose.yml
 -	cuckoo API added to docker-compose.yml
@@ -23,6 +22,7 @@ All notable changes to this project will be documented in this file.
 ### Removed
 
 -	supervisord in favor of entrypoint.sh pattern
+-	postgres removed docker-compose.yml
 
 ### Changed
 

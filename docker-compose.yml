@@ -13,6 +13,7 @@ services:
     links:
       - mongo
       - elasticsearch
+      # - postgres
     command: web
     networks:
       - cuckoo
@@ -22,6 +23,8 @@ services:
       - "8000:1337"
     links:
       - mongo
+      - elasticsearch
+      # - postgres
     command: api
     networks:
       - cuckoo
@@ -51,16 +54,19 @@ services:
       - cuckoo-data:/usr/share/elasticsearch/data
     networks:
       - cuckoo
-postgres:
-  image: postgres
-  environment:
-    POSTGRES_DB: cuckoo
-    POSTGRES_USER: cuckoo
-    POSTGRES_PASSWORD: cuckoo
-  volumes:
-    - cuckoo-data:/var/lib/postgresql/data
-  networks:
-    - cuckoo
+  # postgres:
+  #   image: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     POSTGRES_DB: cuckoo
+  #     POSTGRES_USER: cuckoo
+  #     POSTGRES_PASSWORD: cuckoo
+  #   command: initdb
+  #   volumes:
+  #     - cuckoo-data:/var/lib/postgresql/data
+  #   networks:
+  #     - cuckoo
 
 volumes:
   cuckoo-data:

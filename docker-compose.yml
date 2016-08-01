@@ -51,6 +51,16 @@ services:
       - cuckoo-data:/usr/share/elasticsearch/data
     networks:
       - cuckoo
+postgres:
+  image: postgres
+  environment:
+    POSTGRES_DB: cuckoo
+    POSTGRES_USER: cuckoo
+    POSTGRES_PASSWORD: cuckoo
+  volumes:
+    - cuckoo-data:/var/lib/postgresql/data
+  networks:
+    - cuckoo
 
 volumes:
   cuckoo-data:

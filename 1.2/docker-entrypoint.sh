@@ -13,28 +13,28 @@ fi
 
 # Drop root privileges if we are running cuckoo-daemon
 if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
-
+	shift
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo
 
-	set -- gosu cuckoo /sbin/tini -- python cuckoo.py "${@:2}"
+	set -- gosu cuckoo /sbin/tini -- python cuckoo.py "$@"
 
 elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
-
+	shift
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
-	set -- gosu cuckoo /sbin/tini -- python submit.py "${@:2}"
+	set -- gosu cuckoo /sbin/tini -- python submit.py "$@"
 
 elif [ "$1" = 'process' -a "$(id -u)" = '0' ]; then
-
+	shift
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
-	set -- gosu cuckoo /sbin/tini -- python process.py "${@:2}"
+	set -- gosu cuckoo /sbin/tini -- python process.py "$@"
 
 elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
 
@@ -53,12 +53,12 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
 	set -- gosu cuckoo /sbin/tini -- python manage.py runserver 0.0.0.0:31337
 
 elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
-
+	shift
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
-	set -- gosu cuckoo /sbin/tini -- python stats.py "${@:2}"
+	set -- gosu cuckoo /sbin/tini -- python stats.py "$@"
 
 elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
 

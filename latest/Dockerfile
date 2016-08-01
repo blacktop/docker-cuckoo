@@ -64,4 +64,4 @@ WORKDIR /cuckoo
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD help
+CMD ["help"]

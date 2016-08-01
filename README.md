@@ -38,7 +38,7 @@ blacktop/cuckoo     2.0                 295.6 MB
 blacktop/cuckoo     1.2                 238.1 MB
 ```
 
-> **latest** and **2.0** TAG contain all of cuckoosandbox/community
+> tags **latest** and **2.0** contain all of cuckoosandbox/community
 
 ### Installation
 

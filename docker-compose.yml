@@ -13,16 +13,19 @@ services:
     links:
       - mongo
       - elasticsearch
+      - postgres
     command: web
     networks:
       - cuckoo
   api:
+    depends_on:
+      - postgres
     image: blacktop/cuckoo
     ports:
       - "8000:1337"
     links:
       - postgres
-    entrypoint: /wait-for-it.sh postgres:5432 -- /entrypoint.sh api
+    command: api
     networks:
       - cuckoo
   # nginx:

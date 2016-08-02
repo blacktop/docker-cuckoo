@@ -2,6 +2,29 @@
 
 set -e
 
+wait_for()
+{
+    if [[ $TIMEOUT -gt 0 ]]; then
+        echoerr "waiting $TIMEOUT seconds for $HOST:$PORT"
+    else
+        echoerr "waiting for $HOST:$PORT without a timeout"
+    fi
+    start_ts=$(date +%s)
+    while :
+    do
+        nc -z $HOST $PORT
+        result=$?
+
+        if [[ $result -eq 0 ]]; then
+            end_ts=$(date +%s)
+            echoerr "$cmdname: $HOST:$PORT is available after $((end_ts - start_ts)) seconds"
+            break
+        fi
+        sleep 1
+    done
+    return $result
+}
+
 # Add cuckoo as command if needed
 if [ "${1:0:1}" = '-' ]; then
 	# Change the ownership of /cuckoo to cuckoo
@@ -41,6 +64,15 @@ elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
+
+	echo "waiting for postgres to become available"
+	# while ! nc -z $POSTGRES_PORT_5432_TCP_ADDR $POSTGRES_PORT_5432_TCP_PORT
+	while ! nc -z postgres 5432
+	do
+	  echo "$(date) - still trying"
+	  sleep 1
+	done
+	echo "$(date) - connected successfully"
 
 	set -- gosu cuckoo /sbin/tini -- python api.py --host 0.0.0.0 --port 1337
 

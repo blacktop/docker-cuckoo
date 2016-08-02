@@ -19,11 +19,11 @@ All notable changes to this project will be documented in this file.
 -	gosu
 -	circleCI
 -	table of contents in README
-- add wait-for-it.sh to wait for postgres before API starts
 
 ### Removed
 
 -	supervisord in favor of entrypoint.sh pattern
+- wait-for-it.sh in favor of including in entrypoint.sh itself
 
 ### Changed
 
@@ -38,9 +38,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- add wait-for-it.sh to wait for postgres before API starts
-
 ### Removed
+
+- wait-for-it.sh in favor of including in entrypoint.sh itself
 
 ### Changed
 
@@ -51,10 +51,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- add wait-for-it.sh to wait for postgres before API starts
-
 ### Removed
 
 -	cuckoosandbox/community was removed because it was failing for some reason
+- wait-for-it.sh in favor of including in entrypoint.sh itself
 
 ### Changed

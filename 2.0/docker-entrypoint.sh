@@ -42,6 +42,15 @@ elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/utils
 
+	echo "waiting for postgres to become available"
+	# while ! nc -z $POSTGRES_PORT_5432_TCP_ADDR $POSTGRES_PORT_5432_TCP_PORT
+	while ! nc -z postgres 5432
+	do
+	  echo "$(date) - still trying"
+	  sleep 1
+	done
+	echo "$(date) - connected successfully"
+	
 	set -- gosu cuckoo /sbin/tini -- python api.py --host 0.0.0.0 --port 1337
 
 elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then

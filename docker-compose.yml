@@ -22,7 +22,7 @@ services:
       - "8000:1337"
     links:
       - postgres
-    command: api
+    entrypoint: ./wait-for-it.sh postgres:5432 -- ./entrypoint.sh api
     networks:
       - cuckoo
   # nginx:

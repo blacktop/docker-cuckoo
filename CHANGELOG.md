@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 -	gosu
 -	circleCI
 -	table of contents in README
+- add wait-for-it.sh to wait for postgres before API starts
 
 ### Removed
 
@@ -37,6 +38,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- add wait-for-it.sh to wait for postgres before API starts
+
 ### Removed
 
 ### Changed
@@ -47,6 +50,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 ### Added
+
+- add wait-for-it.sh to wait for postgres before API starts
 
 ### Removed
 

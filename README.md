@@ -168,6 +168,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
 -	[ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
+- [x] add wait-for-it.sh to wait for postgres before API starts  
 -	[ ] Web reverse proxy via Nginx with SSL
 -	[ ] Add snort or suricata or both
 

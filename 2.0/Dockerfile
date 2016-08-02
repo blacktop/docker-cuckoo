@@ -57,6 +57,7 @@ RUN apk-install -t .build-deps \
 
 COPY conf /cuckoo/conf
 COPY docker-entrypoint.sh /entrypoint.sh
+COPY wait-for-it.sh /wait-for-it.sh
 
 VOLUME ["/cuckoo/conf"]
 

@@ -9,21 +9,21 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 
 **Table of Contents**
 
-	-	[Dependencies](#dependencies)
-	-	[Image Tags](#image-tags)
-	-	[Installation](#installation)
-	-	[To Run on OSX](#to-run-on-osx)
-	-	[Getting Started](#getting-started)
-	-	[Documentation](#documentation)
-		-	[Usage](#usage)
-		-	[Available subcommands](#available-subcommands)
-		-	[Tips and Tricks](#tips-and-tricks)
-	-	[Known Issues](#known-issues)
-	-	[Issues](#issues)
-	-	[Todo](#todo)
-	-	[CHANGELOG](#changelog)
-	-	[Contributing](#contributing)
-	-	[License](#license)
+-	[Dependencies](#dependencies)
+-	[Image Tags](#image-tags)
+-	[Installation](#installation)
+-	[To Run on OSX](#to-run-on-osx)
+-	[Getting Started](#getting-started)
+-	[Documentation](#documentation)
+	-	[Usage](#usage)
+	-	[Available subcommands](#available-subcommands)
+	-	[Tips and Tricks](#tips-and-tricks)
+-	[Known Issues](#known-issues)
+-	[Issues](#issues)
+-	[Todo](#todo)
+-	[CHANGELOG](#changelog)
+-	[Contributing](#contributing)
+-	[License](#license)
 
 ### Dependencies
 
@@ -125,8 +125,8 @@ Open a web browser and navigate to :
 $ docker-machine ip
 ```
 
-![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)
-![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)
+![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)  
+![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)  
 
 #### Available subcommands
 
@@ -167,7 +167,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
 -	[ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
-- [x] add wait-for-it.sh to wait for postgres before API starts  
+-	[x] add wait-for-it.sh to wait for postgres before API starts  
 -	[ ] Web reverse proxy via Nginx with SSL
 -	[ ] Add snort or suricata or both
 

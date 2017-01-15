@@ -39,7 +39,7 @@ blacktop/cuckoo     1.2                 258.5 MB
 
 > **NOTE:**
  * tags **latest** and **2.0** contain all of `cuckoosandbox/community`    
- * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contain all of `spender-sandbox/community-modified`  
+ * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contains all of `spender-sandbox/community-modified`  
 
 ### Installation
 

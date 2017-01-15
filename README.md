@@ -33,10 +33,12 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 REPOSITORY          TAG                 SIZE
 blacktop/cuckoo     latest              315.4 MB
 blacktop/cuckoo     2.0                 315.4 MB
+blacktop/cuckoo     modified            315.4 MB
 blacktop/cuckoo     1.2                 258.5 MB
 ```
 
-> NOTE: tags **latest** and **2.0** contain all of `cuckoosandbox/community`
+> **NOTE:** * tags **latest** and **2.0** contain all of `cuckoosandbox/community`  
+>  * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contain all of `spender-sandbox/community-modified`
 
 ### Installation
 
@@ -98,7 +100,7 @@ Now navigate to `http://$(docker-machine ip)`
 ### Documentation
 
 -	[Usage](https://github.com/blacktop/docker-cuckoo/blob/master/docs/usage.md)
--	[Available subcommands](https://github.com/blacktop/docker-cuckoo/blob/master/docs/subcmd.md)
+-	[Available Subcommands](https://github.com/blacktop/docker-cuckoo/blob/master/docs/subcmd.md)
 -	[Tips and Tricks](https://github.com/blacktop/docker-cuckoo/blob/master/docs/tips-tricks.md)
 
 ### Known Issues

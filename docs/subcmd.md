@@ -1,4 +1,4 @@
-Available subcommands
+Available Subcommands
 =====================
 
 ```bash

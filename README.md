@@ -1,7 +1,7 @@
 ![cuckoo-logo](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/logo.png) Dockerfile-beta
 ======================================================================================================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-315.5 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-316.7 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com/cuckoosandbox/cuckoo).
 
@@ -31,10 +31,10 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/cuckoo     latest              315.5 MB
-blacktop/cuckoo     2.0                 315.5 MB
-blacktop/cuckoo     modified            315.4 MB
-blacktop/cuckoo     1.2                 258.5 MB
+blacktop/cuckoo     latest              316.7 MB
+blacktop/cuckoo     2.0                 316.7 MB
+blacktop/cuckoo     modified (WIP)      315.4 MB
+blacktop/cuckoo     1.2                 258.6 MB
 ```
 
 > **NOTE:**
@@ -122,10 +122,11 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] Fix blacktop/yara and blacktop/volatility so I can use them as a base images for this image
 -	[x] Create docker-entryporint.sh to use same container as daemon or web app or api or utility, etc
 -	[ ] Figure out how to link to a analysis Windows VM (would be great if it was running in another container)
--	[ ] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
+-	[x] Correctly link mongo/elasticsearch in confs or document how to do it at runtime (or use docker-entryporint BEST OPTION)
 -	[x] add wait-for-it.sh to wait for postgres before API starts  
 -	[ ] Web reverse proxy via Nginx with SSL
 -	[ ] Add snort or suricata or both
+-	[ ] Get `modified` version of cuckoo to install/run in docker
 
 ### CHANGELOG
 

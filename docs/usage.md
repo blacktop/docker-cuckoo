@@ -4,21 +4,21 @@ Usage
 ```bash
 $ docker run -d --name mongo mongo
 $ docker run -d --name postgres -e POSTGRES_PASSWORD=cuckoo postgres
-$ docker run -d --name elasticsearch elasticsearch
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
-								--name cuckoo-api \
-								--link postgres \
-								-p 8000:1337 \
-								blacktop/cuckoo api
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
-								--name cuckoo-web \
-								--link mongo \
-								--link elasticsearch \
-								-p 80:31337 \
-								blacktop/cuckoo web
+$ docker run -d --name elasticsearch blacktop/elasticsearch
+# Start cuckoo API
+$ docker run -d --name cuckoo-api \
+				--link postgres \
+				-p 8000:1337 \
+				blacktop/cuckoo:2.0 api
+# Start cuckoo web UI				
+$ docker run -d --name cuckoo-web \
+				--link mongo \
+				--link elasticsearch \
+				-p 80:31337 \
+				blacktop/cuckoo:2.0 web
 ```
 
-> **NOTE:** If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like is shown above.
+> **NOTE:** If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like so: `docker run -d -v $(pwd)/conf:/cuckoo/conf blacktop/cuckoo web`
 
 ##### Now Navigate To
 

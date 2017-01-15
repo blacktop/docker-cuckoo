@@ -30,3 +30,4 @@ tlslite-ng==0.6.0-alpha3
 wakeonlan==0.2.2
 Werkzeug==0.10.4
 XenAPI==1.2
+elasticsearch>=5.0.0,<6.0.0

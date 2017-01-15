@@ -6,7 +6,7 @@ ENV CUCKOO_VERSION 1.2
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
-RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto
+RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto curl
 RUN apk-install -t .build-deps \
                    openssl-dev \
                    libxslt-dev \
@@ -54,6 +54,7 @@ RUN apk-install -t .build-deps \
   && apk del --purge .build-deps
 
 COPY conf /cuckoo/conf
+COPY update_conf.py /update_conf.py
 COPY docker-entrypoint.sh /entrypoint.sh
 
 WORKDIR /cuckoo

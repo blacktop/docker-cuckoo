@@ -3,7 +3,7 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[latest] - 2016-07-31
+[latest] - 2017-01-15
 ---------------------
 
 ### Fixed
@@ -16,9 +16,10 @@ All notable changes to this project will be documented in this file.
 -	data volume added to docker-compose.yml
 -	cuckoo API added to docker-compose.yml
 -	tini
--	gosu
+-	su-exec
 -	circleCI
 -	table of contents in README
+- docs in the docs folder
 
 ### Removed
 
@@ -27,9 +28,23 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+-	added ability for docker-entryporint to auto-configure cuckoo based on what services have been `--link`ed.
 -	moved away from `debian` base image in favor of the smaller `alpine`
 
-[2.0] - 2016-07-31
+[modified] - 2017-01-15
+------------------
+
+### Fixed
+
+### Added
+
+-	https://github.com/spender-sandbox/cuckoo-modified
+
+### Removed
+
+### Changed
+
+[2.0] - 2017-01-15
 ------------------
 
 ### Fixed

@@ -1,7 +1,7 @@
 ![cuckoo-logo](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/logo.png) Dockerfile-beta
 ======================================================================================================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-307.6 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-315.4 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com/cuckoosandbox/cuckoo).
 
@@ -15,9 +15,6 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 -	[To Run on OSX](#to-run-on-osx)
 -	[Getting Started](#getting-started)
 -	[Documentation](#documentation)
-	-	[Usage](#usage)
-	-	[Available subcommands](#available-subcommands)
-	-	[Tips and Tricks](#tips-and-tricks)
 -	[Known Issues](#known-issues)
 -	[Issues](#issues)
 -	[Todo](#todo)
@@ -34,9 +31,9 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/cuckoo     latest              307.6 MB
-blacktop/cuckoo     2.0                 307.6 MB
-blacktop/cuckoo     1.2                 238.7 MB
+blacktop/cuckoo     latest              315.4 MB
+blacktop/cuckoo     2.0                 315.4 MB
+blacktop/cuckoo     1.2                 258.5 MB
 ```
 
 > NOTE: tags **latest** and **2.0** contain all of `cuckoosandbox/community`
@@ -100,56 +97,9 @@ Now navigate to `http://$(docker-machine ip)`
 
 ### Documentation
 
-#### Usage
-
-```bash
-$ docker run -d --name mongo mongo
-$ docker run -d --name postgres -e POSTGRES_PASSWORD=cuckoo postgres
-$ docker run -d --name elasticsearch elasticsearch
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
-								--link postgres \
-								-p 8000:1337 \
-								blacktop/cuckoo api
-$ docker run -d -v $(pwd)/conf:/cuckoo/conf:ro \
-								--link mongo \
-								--link elasticsearch \
-								-p 80:31337 \
-								blacktop/cuckoo web
-```
-
-> NOTE: If you want to customize the cuckoo configuration before launching you can link the **conf** folder into the container like is shown above.
-
-Open a web browser and navigate to :
-
-```bash
-$ docker-machine ip
-```
-
-![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)  
-![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)  
-
-#### Available subcommands
-
-```bash
-docker run blacktop/cuckoo daemon       # start cuckoo.py
-docker run blacktop/cuckoo submit       # run utils/submit.py
-docker run blacktop/cuckoo process      # run utils/process.py
-docker run blacktop/cuckoo api          # starts RESTFull API
-docker run blacktop/cuckoo web          # starts web UI
-docker run blacktop/cuckoo distributed  # runs distributed/app.py
-docker run blacktop/cuckoo stats        # utils/stats.py
-docker run blacktop/cuckoo help         # runs cuckoo.py --help
-```
-
-#### Tips and Tricks
-
-As a convenience you can add the **docker-machine** IP to your **/etc/hosts** file:
-
-```bash
-$ echo $(docker-machine ip) dockerhost | sudo tee -a /etc/hosts
-```
-
-Now you can navigate to [http://dockerhost](http://dockerhost) from your host
+-	[Usage](https://github.com/blacktop/docker-cuckoo/blob/master/docs/usage.md)
+-	[Available subcommands](https://github.com/blacktop/docker-cuckoo/blob/master/docs/subcmd.md)
+-	[Tips and Tricks](https://github.com/blacktop/docker-cuckoo/blob/master/docs/tips-tricks.md)
 
 ### Known Issues
 

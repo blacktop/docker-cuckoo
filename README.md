@@ -1,7 +1,7 @@
 ![cuckoo-logo](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/logo.png) Dockerfile-beta
 ======================================================================================================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-315.4 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-cuckoo.png?style=shield)](https://circleci.com/gh/blacktop/docker-cuckoo) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/cuckoo.svg)](https://hub.docker.com/r/blacktop/cuckoo/) [![Docker Image](https://img.shields.io/badge/docker image-315.5 MB-blue.svg)](https://hub.docker.com/r/blacktop/cuckoo/)
 
 This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com/cuckoosandbox/cuckoo).
 
@@ -31,8 +31,8 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/cuckoo     latest              315.4 MB
-blacktop/cuckoo     2.0                 315.4 MB
+blacktop/cuckoo     latest              315.5 MB
+blacktop/cuckoo     2.0                 315.5 MB
 blacktop/cuckoo     modified            315.4 MB
 blacktop/cuckoo     1.2                 258.5 MB
 ```

@@ -106,7 +106,7 @@ Now navigate to `http://$(docker-machine ip)`
 
 ### Known Issues
 
-Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. :wink:
+Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. [:wink:](https://github.com/blacktop/vm-proxy)
 
 ### Issues
 

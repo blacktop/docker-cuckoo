@@ -168,6 +168,10 @@ elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
 
 elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
+  if [ -z "$MONGO_HOST" ]; then
+    echo >&2 "[ERROR] MongoDB cannot be found. Please link mongo and try again..."
+    exit 1
+  fi
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/web

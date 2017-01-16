@@ -100,8 +100,8 @@ $ curl localhost:8000/cuckoo/status
 
 ##### Now Navigate To
 
--	With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
+-	With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
 
 ### Documentation
 

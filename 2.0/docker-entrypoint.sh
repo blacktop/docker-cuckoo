@@ -3,12 +3,24 @@
 set -e
 
 setDefaults() {
-  export ES_HOST="$(env | grep ELASTIC.*PORT_9200_TCP_ADDR= | sed -e 's|.*=||')"
-  export ES_PORT="$(env | grep ELASTIC.*PORT_9200_TCP_PORT= | sed -e 's|.*=||')"
-  export MONGO_HOST="$(env | grep MONGO.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
-  export MONGO_TCP_PORT="$(env | grep MONGO.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
-  export POSTGRES_HOST="$(env | grep POSTGRES.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
-  export POSTGRES_TCP_PORT="$(env | grep POSTGRES.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
+  if [ -z "$ES_HOST" ]; then
+    export ES_HOST="$(env | grep ELASTIC.*PORT_9200_TCP_ADDR= | sed -e 's|.*=||')"
+  fi
+  if [ -z "$ES_PORT" ]; then
+    export ES_PORT="$(env | grep ELASTIC.*PORT_9200_TCP_PORT= | sed -e 's|.*=||')"
+  fi
+  if [ -z "$MONGO_HOST" ]; then
+    export MONGO_HOST="$(env | grep MONGO.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
+  fi
+  if [ -z "$MONGO_TCP_PORT" ]; then
+    export MONGO_TCP_PORT="$(env | grep MONGO.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
+  fi
+  if [ -z "$POSTGRES_HOST" ]; then
+    export POSTGRES_HOST="$(env | grep POSTGRES.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
+  fi
+  if [ -z "$POSTGRES_TCP_PORT" ]; then
+    export POSTGRES_TCP_PORT="$(env | grep POSTGRES.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
+  fi
   env | grep -E "^ES.*|^MONGO_HOST|^MONGO_TCP_PORT|^POSTGRES.*" | sort -n
 }
 

@@ -67,8 +67,10 @@ Or install [Docker for Mac](https://docs.docker.com/docker-for-mac/)
 ```bash
 $ curl -sL https://github.com/blacktop/docker-cuckoo/raw/master/docker-compose.yml > docker-compose.yml
 $ docker-compose up -d
-# Cuckoo API is listening on port 8000 now.
+# For docker-machine
 $ curl $(docker-machine ip):8000/cuckoo/status
+# For Docker for Mac
+$ curl localhost:8000/cuckoo/status
 ```
 
 ```json

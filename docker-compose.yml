@@ -7,24 +7,34 @@ services:
   #   networks:
   #     - cuckoo
   web:
-    image: blacktop/cuckoo
+    image: blacktop/cuckoo:2.0
     ports:
       - "80:31337"
     links:
       - mongo
       - elasticsearch
       - postgres
+    environment:
+      - ES_HOST=elasticsearch
+      - ES_PORT=9200
+      - MONGO_HOST=mongo
+      - MONGO_TCP_PORT=27017
+      - POSTGRES_HOST=postgres
+      - POSTGRES_TCP_PORT=5432
     command: web
     networks:
       - cuckoo
   api:
     depends_on:
       - postgres
-    image: blacktop/cuckoo
+    image: blacktop/cuckoo:2.0
     ports:
       - "8000:1337"
     links:
       - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_TCP_PORT=5432
     command: api
     networks:
       - cuckoo
@@ -47,7 +57,7 @@ services:
     networks:
       - cuckoo
   elasticsearch:
-    image: elasticsearch
+    image: blacktop/elasticsearch
     ports:
       - "9200:9200"
     volumes:

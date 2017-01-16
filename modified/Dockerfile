@@ -5,7 +5,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
-RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto
+RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto geoip curl
 RUN apk-install -t .build-deps \
                    openssl-dev \
                    libxslt-dev \
@@ -13,6 +13,7 @@ RUN apk-install -t .build-deps \
                    python-dev \
                    libffi-dev \
                    build-base \
+                   geoip-dev \
                    libstdc++ \
                    zlib-dev \
                    libc-dev \
@@ -48,11 +49,19 @@ RUN apk-install -t .build-deps \
   && echo "===> Install mitmproxy..." \
   && LDFLAGS=-L/lib pip install mitmproxy \
   && pip install -r requirements.txt \
+  && python utils/community.py -waf \
   && echo "===> Clean up unnecessary files..." \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
+# Install the GeoIPLite Database
+RUN mkdir -p /usr/share/GeoIP/ \
+  && GEOIP=geolite.maxmind.com/download/geoip/database \
+  && curl -s http://${GEOIP}/GeoLiteCity.dat.gz | zcat > /usr/share/GeoIP/GeoIP.dat \
+  && curl -s http://${GEOIP}/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz | zcat > /usr/share/GeoIP/GeoIPv6.dat
+
 COPY conf /cuckoo/conf
+COPY update_conf.py /update_conf.py
 COPY docker-entrypoint.sh /entrypoint.sh
 
 WORKDIR /cuckoo

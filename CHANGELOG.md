@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 -	https://github.com/spender-sandbox/cuckoo-modified
+-	added geoip
 
 ### Removed
 

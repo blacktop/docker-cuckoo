@@ -33,7 +33,7 @@ This repository contains a **Dockerfile** of [Cuckoo Sandbox](https://github.com
 REPOSITORY          TAG                 SIZE
 blacktop/cuckoo     latest              316.7 MB
 blacktop/cuckoo     2.0                 316.7 MB
-blacktop/cuckoo     modified (WIP)      315.4 MB
+blacktop/cuckoo     modified (WIP)      317.1 MB
 blacktop/cuckoo     1.2                 258.6 MB
 ```
 
@@ -107,6 +107,7 @@ $ curl localhost:8000/cuckoo/status
 
 -	[Usage](https://github.com/blacktop/docker-cuckoo/blob/master/docs/usage.md)
 -	[Available Subcommands](https://github.com/blacktop/docker-cuckoo/blob/master/docs/subcmd.md)
+-	[Running Modified Version](https://github.com/blacktop/docker-cuckoo/blob/master/docs/modified.md)
 -	[Tips and Tricks](https://github.com/blacktop/docker-cuckoo/blob/master/docs/tips-tricks.md)
 
 ### Known Issues
@@ -128,7 +129,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 -	[x] add wait-for-it.sh to wait for postgres before API starts  
 -	[ ] Web reverse proxy via Nginx with SSL
 -	[ ] Add snort or suricata or both
--	[ ] Get `modified` version of cuckoo to install/run in docker
+-	[x] Get `modified` version of cuckoo to install/run in docker
 
 ### CHANGELOG
 

@@ -1,11 +1,11 @@
 version: "2"
 
 services:
-  # cuckoo:
-  #   image: blacktop/cuckoo:2.0
-  #   command: daemon
-  #   networks:
-  #     - cuckoo
+  cuckoo:
+    image: blacktop/cuckoo:2.0
+    command: daemon
+    networks:
+      - cuckoo
   web:
     image: blacktop/cuckoo:2.0
     ports:

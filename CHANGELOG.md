@@ -3,10 +3,12 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
-[latest] - 2017-01-15
+[2.0] - 2017-01-15
 ---------------------
 
 ### Fixed
+
+-	fixed bad items in requirements.txt
 
 ### Added
 
@@ -41,23 +43,6 @@ All notable changes to this project will be documented in this file.
 -	https://github.com/spender-sandbox/cuckoo-modified
 
 ### Removed
-
-### Changed
-
-[2.0] - 2017-01-15
-------------------
-
-### Fixed
-
--	fixed bad items in requirements.txt
-
-### Added
-
--	2.0-rc2
-
-### Removed
-
-- wait-for-it.sh in favor of including in entrypoint.sh itself
 
 ### Changed
 

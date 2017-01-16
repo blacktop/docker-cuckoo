@@ -3,8 +3,8 @@ Usage
 
 ```bash
 $ docker run -d --name mongo mongo
-$ docker run -d --name postgres -e POSTGRES_PASSWORD=cuckoo postgres
 $ docker run -d --name elasticsearch blacktop/elasticsearch
+$ docker run -d --name postgres -e POSTGRES_PASSWORD=cuckoo postgres
 # Start cuckoo API
 $ docker run -d --name cuckoo-api \
 				--link postgres \

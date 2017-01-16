@@ -3,25 +3,11 @@
 set -e
 
 setDefaults() {
-  if [ -z "$ES_HOST" ]; then
-    export ES_HOST="$(env | grep ELASTIC.*PORT_9200_TCP_ADDR= | sed -e 's|.*=||')"
-  fi
-  if [ -z "$ES_PORT" ]; then
-    export ES_PORT="$(env | grep ELASTIC.*PORT_9200_TCP_PORT= | sed -e 's|.*=||')"
-  fi
-  if [ -z "$MONGO_HOST" ]; then
-    export MONGO_HOST="$(env | grep MONGO.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
-  fi
-  if [ -z "$MONGO_TCP_PORT" ]; then
-    export MONGO_TCP_PORT="$(env | grep MONGO.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
-  fi
-  if [ -z "$POSTGRES_HOST" ]; then
-    export POSTGRES_HOST="$(env | grep POSTGRES.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"
-  fi
-  if [ -z "$POSTGRES_TCP_PORT" ]; then
-    export POSTGRES_TCP_PORT="$(env | grep POSTGRES.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"
-  fi
-  env | grep -E "^ES.*|^MONGO_HOST|^MONGO_TCP_PORT|^POSTGRES.*" | sort -n
+  export MONGO_HOST=${MONGO_HOST:="$(env | grep MONGO.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"}
+  export MONGO_TCP_PORT=${MONGO_TCP_PORT:="$(env | grep MONGO.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"}
+  export POSTGRES_HOST=${POSTGRES_HOST:="$(env | grep POSTGRES.*PORT_.*_TCP_ADDR= | sed -e 's|.*=||')"}
+  export POSTGRES_TCP_PORT=${POSTGRES_TCP_PORT:="$(env | grep POSTGRES.*PORT_.*_TCP_PORT= | sed -e 's|.*=||')"}
+  env | grep -E "^MONGO_HOST|^MONGO_TCP_PORT|^POSTGRES.*|^RESULTSERVER" | sort -n
 }
 
 # Wait for. Params: host, port, service
@@ -74,6 +60,8 @@ fi
 # Drop root privileges if we are running cuckoo-daemon
 if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
 	shift
+  # If not set default to 0.0.0.0
+  export RESULTSERVER=${RESULTSERVER:=0.0.0.0}
   setUpCuckoo
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
@@ -112,7 +100,7 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   if [ -z "$MONGO_HOST" ]; then
     echo >&2 "[ERROR] MongoDB cannot be found. Please link mongo and try again..."
     exit 1
-  fi  
+  fi
 	# Change the ownership of /cuckoo to cuckoo
 	chown -R cuckoo:cuckoo /cuckoo
 	cd /cuckoo/web

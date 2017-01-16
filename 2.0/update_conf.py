@@ -16,4 +16,11 @@ with open("/cuckoo/conf/reporting.conf", 'w') as cfile:
         cfg.set('mongodb', 'hosts', os.environ['MONGO_HOST'])
     cfg.write(cfile)
 
+cfg.read("/cuckoo/conf/cuckoo.conf")
+
+with open("/cuckoo/conf/cuckoo.conf", 'w') as cfile:
+    if os.environ.get('RESULTSERVER'):
+        cfg.set('resultserver', 'ip', os.environ['RESULTSERVER'])
+    cfg.write(cfile)
+
 sys.exit()

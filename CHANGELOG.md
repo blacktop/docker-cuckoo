@@ -53,6 +53,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+-	2.0-rc2
+
 ### Removed
 
 - wait-for-it.sh in favor of including in entrypoint.sh itself

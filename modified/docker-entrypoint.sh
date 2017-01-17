@@ -116,7 +116,7 @@ if [ "${1:0:1}" = '-' ]; then
   cd /cuckoo/
 
   set -- python cuckoo.py "$@"
-  fi
+fi
 
 # Drop root privileges if we are running cuckoo-daemon
 if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then

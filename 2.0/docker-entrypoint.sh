@@ -137,7 +137,7 @@ elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
   chown -R cuckoo:cuckoo /cuckoo
   cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python submit.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python submit.py "$@"
 
 elif [ "$1" = 'process' -a "$(id -u)" = '0' ]; then
   shift
@@ -169,20 +169,20 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   set -- su-exec cuckoo /sbin/tini -- python manage.py runserver 0.0.0.0:31337
 
 elif [ "$1" = 'distributed' -a "$(id -u)" = '0' ]; then
-	shift
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/distributed
+  shift
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/distributed
 
-	set -- su-exec cuckoo /sbin/tini -- python app.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python app.py "$@"
 
 elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
-	shift
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/utils
+  shift
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python stats.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python stats.py "$@"
 
 elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
   setUpCuckoo

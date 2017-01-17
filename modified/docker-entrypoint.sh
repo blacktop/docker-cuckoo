@@ -111,50 +111,50 @@ setUpCuckoo(){
 # Add cuckoo as command if needed
 if [ "${1:0:1}" = '-' ]; then
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/
 
-	set -- python cuckoo.py "$@"
-fi
+  set -- python cuckoo.py "$@"
+  fi
 
 # Drop root privileges if we are running cuckoo-daemon
 if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
-	shift
+  shift
   # If not set default to 0.0.0.0
   export RESULTSERVER=${RESULTSERVER:=0.0.0.0}
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo
 
-	set -- su-exec cuckoo /sbin/tini -- python cuckoo.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python cuckoo.py "$@"
 
 elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
-	shift
+  shift
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/utils
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python submit.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python submit.py "$@"
 
 elif [ "$1" = 'process' -a "$(id -u)" = '0' ]; then
-	shift
+  shift
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/utils
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python process.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python process.py "$@"
 
 elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/utils
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python api.py --host 0.0.0.0 --port 1337
+  set -- su-exec cuckoo /sbin/tini -- python api.py --host 0.0.0.0 --port 1337
 
 elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
@@ -162,35 +162,35 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
     echo >&2 "[ERROR] Elasticsearch or MongoDB cannot be found. Please link mongo and try again..."
     exit 1
   fi
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/web
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/web
   su-exec cuckoo python manage.py migrate
-	set -- su-exec cuckoo /sbin/tini -- python manage.py runserver 0.0.0.0:31337
+  set -- su-exec cuckoo /sbin/tini -- python manage.py runserver 0.0.0.0:31337
 
 elif [ "$1" = 'distributed' -a "$(id -u)" = '0' ]; then
-	shift
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/distributed
+  shift
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/distributed
 
-	set -- su-exec cuckoo /sbin/tini -- python app.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python app.py "$@"
 
 elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
-	shift
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo/utils
+  shift
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo/utils
 
-	set -- su-exec cuckoo /sbin/tini -- python stats.py "$@"
+  set -- su-exec cuckoo /sbin/tini -- python stats.py "$@"
 
 elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
-	# Change the ownership of /cuckoo to cuckoo
-	chown -R cuckoo:cuckoo /cuckoo
-	cd /cuckoo
+  # Change the ownership of /cuckoo to cuckoo
+  chown -R cuckoo:cuckoo /cuckoo
+  cd /cuckoo
 
-	set -- su-exec cuckoo /sbin/tini -- python cuckoo.py --help
+  set -- su-exec cuckoo /sbin/tini -- python cuckoo.py --help
 fi
 
 exec "$@"

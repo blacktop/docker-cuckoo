@@ -115,7 +115,7 @@ if [ "${1:0:1}" = '-' ]; then
   chown -R cuckoo:cuckoo /cuckoo
   cd /cuckoo/
 
-  set -- cuckoo "$@"
+  set -- su-exec cuckoo /sbin/tini -- cuckoo "$@"
 fi
 
 # Drop root privileges if we are running cuckoo-daemon
@@ -135,18 +135,8 @@ elif [ "$1" = 'submit' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
   # Change the ownership of /cuckoo to cuckoo
   chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/utils
 
   set -- su-exec cuckoo /sbin/tini -- cuckoo submit "$@"
-
-elif [ "$1" = 'process' -a "$(id -u)" = '0' ]; then
-  shift
-  setUpCuckoo
-  # Change the ownership of /cuckoo to cuckoo
-  chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/utils
-
-  set -- su-exec cuckoo /sbin/tini -- cuckoo process "$@"
 
 elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
@@ -167,30 +157,6 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   cd /cuckoo/web
 
   set -- su-exec cuckoo /sbin/tini -- cuckoo web runserver 0.0.0.0:31337
-
-elif [ "$1" = 'distributed' -a "$(id -u)" = '0' ]; then
-  shift
-  # Change the ownership of /cuckoo to cuckoo
-  chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/distributed
-
-  set -- su-exec cuckoo /sbin/tini -- cuckoo distributed server "$@"
-
-elif [ "$1" = 'stats' -a "$(id -u)" = '0' ]; then
-  shift
-  # Change the ownership of /cuckoo to cuckoo
-  chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/utils
-
-  set -- su-exec cuckoo /sbin/tini -- cuckoo stats "$@"
-
-elif [ "$1" = 'help' -a "$(id -u)" = '0' ]; then
-  setUpCuckoo
-  # Change the ownership of /cuckoo to cuckoo
-  chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo
-
-  set -- su-exec cuckoo /sbin/tini -- cuckoo --help
 fi
 
 exec "$@"

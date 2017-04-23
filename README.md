@@ -37,9 +37,8 @@ blacktop/cuckoo     modified (WIP)      317.1 MB
 blacktop/cuckoo     1.2                 258.6 MB
 ```
 
-> **NOTE:**
- * tags **latest** and **2.0** contain all of `cuckoosandbox/community`    
- * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contains all of `spender-sandbox/community-modified` 
+> **NOTE:** * tags **latest** and **2.0** contain all of `cuckoosandbox/community`  
+>  * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contains all of `spender-sandbox/community-modified`
 
 ### Installation
 
@@ -102,6 +101,8 @@ $ curl localhost:8000/cuckoo/status
 
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
 -	With [Docker for Mac](https://docs.docker.com/engine/installation/mac/) : `http://localhost`
+
+![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/2.0/dashboard.png)
 
 ### Documentation
 

@@ -1,8 +1,9 @@
 FROM blacktop/volatility:2.6
 
-MAINTAINER blacktop, https://github.com/blacktop
+LABEL maintainer "https://github.com/blacktop"
 
-ENV CUCKOO_VERSION 2.0-rc2
+ENV CUCKOO_VERSION 2.0.1
+ENV CUCKOO_CWD /cuckoo
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
@@ -40,17 +41,18 @@ RUN apk-install -t .build-deps \
   && cd pydeep \
   && python setup.py build \
   && python setup.py install \
-  && echo "===> Cloning Cuckoo Sandbox..." \
-  && git clone --recursive --branch $CUCKOO_VERSION https://github.com/cuckoosandbox/cuckoo.git /cuckoo \
-  && adduser -DH cuckoo \
-  && cd /cuckoo \
+  && echo "===> Install Cuckoo Sandbox..." \
+  && mkdir /cuckoo \
+  && adduser -D -h /cuckoo cuckoo \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel \
+  && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
+  && cuckoo \
+  && cuckoo community \
   && echo "===> Install mitmproxy..." \
   && LDFLAGS=-L/lib pip install mitmproxy \
   && pip install -r /tmp/requirements.txt \
-  && python utils/community.py -waf \
   && echo "===> Clean up unnecessary files..." \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps

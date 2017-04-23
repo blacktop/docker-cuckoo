@@ -3,7 +3,7 @@ NAME=cuckoo
 BUILD ?= 2.0
 LATEST ?= 2.0
 
-all: build size
+all: build size test
 
 build:
 	cd $(BUILD); docker build -t $(REPO)/$(NAME):$(BUILD) .
@@ -19,8 +19,6 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test:
-	docker run -d --name ctest $(REPO)/$(NAME):$(BUILD); sleep 10;
-	docker logs ctest
-	docker rm -f ctest
+	docker run --rm --name ctest $(REPO)/$(NAME):$(BUILD)
 
 .PHONY: build size tags test

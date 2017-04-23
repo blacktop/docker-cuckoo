@@ -37,9 +37,8 @@ blacktop/cuckoo     modified (WIP)      317.1 MB
 blacktop/cuckoo     1.2                 258.6 MB
 ```
 
-> **NOTE:**
- * tags **latest** and **2.0** contain all of `cuckoosandbox/community`    
- * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contains all of `spender-sandbox/community-modified`  
+> **NOTE:** * tags **latest** and **2.0** contain all of `cuckoosandbox/community`  
+>  * tag **modified** is the *awesome* **spender-sandbox** version of cuckoo and contains all of `spender-sandbox/community-modified`
 
 ### Installation
 
@@ -143,4 +142,4 @@ Please update the [CHANGELOG.md](https://github.com/blacktop/docker-cuckoo/blob/
 
 ### License
 
-MIT Copyright (c) 2015-2016 **blacktop**
+MIT Copyright (c) 2015-2017 **blacktop**

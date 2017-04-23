@@ -26,5 +26,6 @@ $ docker run -d --name cuckoo-web \
 -	With [docker-machine](https://docs.docker.com/machine/) : `http://$(docker-machine ip)`
 -	With [docker-engine](https://docker.github.io/engine/installation/) : `$(docker inspect -f '{{ .NetworkSettings.IPAddress }}' cuckoo-web)`
 
-![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/submit.png)  
-![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/dashboard.png)  
+![cuckoo-submit](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/2.0/submit.png)  
+![cuckoo-config](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/2.0/config.png)  
+![cuckoo-dashboard](https://github.com/blacktop/docker-cuckoo/raw/master/docs/img/2.0/dashboard.png)

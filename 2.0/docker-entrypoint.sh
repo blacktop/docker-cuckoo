@@ -142,7 +142,6 @@ elif [ "$1" = 'api' -a "$(id -u)" = '0' ]; then
   setUpCuckoo
   # Change the ownership of /cuckoo to cuckoo
   chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/utils
 
   set -- su-exec cuckoo /sbin/tini -- cuckoo api --host 0.0.0.0 --port 1337
 
@@ -154,7 +153,6 @@ elif [ "$1" = 'web' -a "$(id -u)" = '0' ]; then
   fi
   # Change the ownership of /cuckoo to cuckoo
   chown -R cuckoo:cuckoo /cuckoo
-  cd /cuckoo/web
 
   set -- su-exec cuckoo /sbin/tini -- cuckoo web runserver 0.0.0.0:31337
 fi

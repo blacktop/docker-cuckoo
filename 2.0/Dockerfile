@@ -2,14 +2,14 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV CUCKOO_VERSION 2.0.1
+ENV CUCKOO_VERSION 2.0.2
 ENV CUCKOO_CWD /cuckoo
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
 COPY requirements.txt /tmp/requirements.txt
-RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto curl
-RUN apk-install -t .build-deps \
+RUN apk add --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto curl
+RUN apk add --no-cache -t .build-deps \
                    openssl-dev \
                    libxslt-dev \
                    libxml2-dev \

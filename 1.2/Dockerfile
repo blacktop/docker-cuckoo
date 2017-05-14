@@ -6,24 +6,24 @@ ENV CUCKOO_VERSION 1.2
 ENV SSDEEP ssdeep-2.13
 
 # Install Cuckoo Sandbox Required Dependencies
-RUN apk-install tcpdump py-lxml py-chardet py-libvirt py-crypto curl
-RUN apk-install -t .build-deps \
-                   openssl-dev \
-                   libxslt-dev \
-                   libxml2-dev \
-                   python-dev \
-                   libffi-dev \
-                   build-base \
-                   libstdc++ \
-                   zlib-dev \
-                   libc-dev \
-                   jpeg-dev \
-                   file-dev \
-                   automake \
-                   autoconf \
-                   libtool \
-                   py-pip \
-                   git \
+RUN apk add --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto curl
+RUN apk add --no-cache -t .build-deps \
+                           openssl-dev \
+                           libxslt-dev \
+                           libxml2-dev \
+                           python-dev \
+                           libffi-dev \
+                           build-base \
+                           libstdc++ \
+                           zlib-dev \
+                           libc-dev \
+                           jpeg-dev \
+                           file-dev \
+                           automake \
+                           autoconf \
+                           libtool \
+                           py-pip \
+                           git \
   && set -x \
   && echo "===> Install ssdeep..." \
   && wget -O /tmp/$SSDEEP.tar.gz https://downloads.sourceforge.net/project/ssdeep/$SSDEEP/$SSDEEP.tar.gz \

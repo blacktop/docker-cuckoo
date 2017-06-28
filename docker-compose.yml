@@ -94,3 +94,9 @@ services:
 networks:
   cuckoo:
     driver: bridge
+
+volumes:
+  cuckoo-data:
+  mongo-data:
+  es-data:
+  postgres-data:

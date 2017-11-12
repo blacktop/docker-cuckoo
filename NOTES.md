@@ -11,5 +11,16 @@ Notes
 -	https://github.com/daniel-gallagher/cuckoo-autoinstall
 
 QEMU
+----
 
 -	https://github.com/tianon/dockerfiles/tree/master/qemu
+
+KVM
+---
+
+- https://bitbucket.org/cse-assemblyline/alsvc_cuckoo/src
+
+VirtBox
+-------
+
+- https://github.com/blacktop/docker-cuckoo/issues/9#issuecomment-333651012

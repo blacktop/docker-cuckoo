@@ -64,7 +64,8 @@ Or install [Docker for Mac](https://docs.docker.com/docker-for-mac/)
 ### Getting Started
 
 ```bash
-$ curl -sL https://github.com/blacktop/docker-cuckoo/raw/master/docker-compose.yml > docker-compose.yml
+$ git clone https://github.com/blacktop/docker-cuckoo
+$ cd docker-cuckoo
 $ docker-compose up -d
 # For docker-machine
 $ curl $(docker-machine ip):8000/cuckoo/status

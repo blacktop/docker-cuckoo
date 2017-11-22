@@ -54,17 +54,18 @@ RUN apk add --no-cache -t .build-deps \
   && cd pydeep \
   && python setup.py build \
   && python setup.py install \
+  && echo "===> Install mitmproxy..." \
+  && LDFLAGS=-L/lib pip install mitmproxy \
   && echo "===> Install Cuckoo Sandbox..." \
   && mkdir /cuckoo \
   && adduser -D -h /cuckoo cuckoo \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel setuptools \
-  && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
+  && LDFLAGS=-L/lib pip install cuckoo[distributed]==$CUCKOO_VERSION \
   && cuckoo \
   && cuckoo community \
-  && echo "===> Install mitmproxy..." \
-  && LDFLAGS=-L/lib pip install mitmproxy \
+  && echo "===> Install additional dependencies..." \
   && pip install -r /tmp/requirements.txt \
   && echo "===> Clean up unnecessary files..." \
   && rm -rf /tmp/* \

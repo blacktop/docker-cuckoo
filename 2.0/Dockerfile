@@ -2,9 +2,9 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV CUCKOO_VERSION 2.0.2
+ENV CUCKOO_VERSION 2.0.4
 ENV CUCKOO_CWD /cuckoo
-ENV SSDEEP ssdeep-2.13
+ENV SSDEEP 2.14.1
 
 # Install Cuckoo Sandbox Required Dependencies
 COPY requirements.txt /tmp/requirements.txt
@@ -21,6 +21,7 @@ RUN apk update && apk add --no-cache postgresql-dev \
                      gcc \
                      g++
 RUN apk add --no-cache -t .build-deps \
+                           linux-headers \
                            openssl-dev \
                            libxslt-dev \
                            libxml2-dev \
@@ -39,10 +40,11 @@ RUN apk add --no-cache -t .build-deps \
                            git \
   && set -x \
   && echo "===> Install ssdeep..." \
-  && wget -O /tmp/$SSDEEP.tar.gz https://downloads.sourceforge.net/project/ssdeep/$SSDEEP/$SSDEEP.tar.gz \
+  && curl -Ls https://github.com/ssdeep-project/ssdeep/releases/download/release-$SSDEEP/ssdeep-$SSDEEP.tar.gz > \
+    /tmp/ssdeep-$SSDEEP.tar.gz \
   && cd /tmp \
-  && tar zxvf $SSDEEP.tar.gz \
-  && cd $SSDEEP \
+  && tar xzf ssdeep-$SSDEEP.tar.gz \
+  && cd ssdeep-$SSDEEP \
   && ./configure \
   && make \
   && make install \
@@ -57,7 +59,7 @@ RUN apk add --no-cache -t .build-deps \
   && adduser -D -h /cuckoo cuckoo \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
-  && pip install --upgrade pip wheel \
+  && pip install --upgrade pip wheel setuptools \
   && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
   && cuckoo \
   && cuckoo community \

@@ -62,7 +62,7 @@ RUN apk add --no-cache -t .build-deps \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade pip wheel setuptools \
-  && LDFLAGS=-L/lib pip install cuckoo[distributed]==$CUCKOO_VERSION \
+  && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
   && cuckoo \
   && cuckoo community \
   && echo "===> Install additional dependencies..." \

@@ -24,3 +24,8 @@ VirtBox
 -------
 
 - https://github.com/blacktop/docker-cuckoo/issues/9#issuecomment-333651012
+
+Hypervisor Proxies
+------------------
+
+- https://github.com/blacktop/vm-proxy

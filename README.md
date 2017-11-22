@@ -114,7 +114,7 @@ $ curl localhost:8000/cuckoo/status
 
 ### Known Issues
 
-Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. [:wink:](https://github.com/blacktop/vm-proxy)
+Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. [:wink:](https://github.com/blacktop/vm-proxy) see the [NOTES](https://github.com/blacktop/docker-cuckoo/blob/master/NOTES.md)
 
 ### Issues
 

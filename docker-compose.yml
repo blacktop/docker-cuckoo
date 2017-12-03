@@ -1,23 +1,26 @@
-version: "2"
+version: "3.4"
 
 services:
   cuckoo:
     image: blacktop/cuckoo:2.0
     command: daemon
+    cap_add:
+      - ALL
+    privileged: true
     ports:
-      - "2042:2042"
+      - 2042:2042
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - ./storage/:/cuckoo/storage/
-    networks:
-      - cuckoo
+      - ./suricata-cuckoo.yaml:/etc/suricata/suricata-cuckoo.yaml
+    network_mode: host
     env_file:
       - ./2.0/config-file.env
 
   web:
     image: blacktop/cuckoo:2.0
     ports:
-      - "80:31337"
+      - 80:31337
     links:
       - mongo
       - elasticsearch
@@ -36,7 +39,7 @@ services:
       - postgres
     image: blacktop/cuckoo:2.0
     ports:
-      - "8000:1337"
+      - 8000:1337
     links:
       - postgres
     command: api
@@ -92,6 +95,8 @@ services:
       - cuckoo
 
 networks:
+  host:
+    driver: default
   cuckoo:
     driver: bridge
 

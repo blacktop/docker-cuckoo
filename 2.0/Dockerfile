@@ -1,4 +1,5 @@
 FROM alpine:3.6
+LABEL maintainer "https://github.com/blacktop"
 
 ENV VOL_VERSION 2.6
 ENV YARA_VERSION 3.6.3
@@ -6,7 +7,7 @@ ENV CUCKOO_CWD /cuckoo
 ENV SSDEEP ssdeep-2.13
 ENV SURICATA_VERSION 3.2.1
 ENV TCPDUMP_VERSION 4.7.4-r0
-
+ENV CUCKOO_VERSION 2.0.4
 
 RUN apk add --no-cache ca-certificates \
                             zlib \
@@ -116,8 +117,8 @@ RUN apk add --no-cache -t .build-deps \
   && pip install --upgrade pip wheel \
   && rm -rf /tmp/*
 
-COPY cuckoo /tmp/cuckoo
 RUN cd /tmp/cuckoo \
+  && LDFLAGS=-L/lib pip install cuckoo==$CUCKOO_VERSION \
   && pip install -r requirements.txt \
   && python stuff/monitor.py \
   && python setup.py sdist install \

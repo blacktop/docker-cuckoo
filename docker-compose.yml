@@ -1,4 +1,4 @@
-version: "2"
+version: "3.4"
 
 services:
   cuckoo:
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - ./storage/:/cuckoo/storage/
-      - ./suricata/suricata-cuckoo.yaml:/etc/suricata/suricata-cuckoo.yaml
+      - ./suricata-cuckoo.yaml:/etc/suricata/suricata-cuckoo.yaml
     network_mode: host
     env_file:
       - ./config-file.env

@@ -15,12 +15,12 @@ services:
       - ./suricata-cuckoo.yaml:/etc/suricata/suricata-cuckoo.yaml
     network_mode: host
     env_file:
-      - ./config-file.env
+      - ./2.0/config-file.env
 
   web:
     image: blacktop/cuckoo:2.0
     ports:
-      - "80:31337"
+      - 80:31337
     links:
       - mongo
       - elasticsearch
@@ -39,7 +39,7 @@ services:
       - postgres
     image: blacktop/cuckoo:2.0
     ports:
-      - "8000:1337"
+      - 8000:1337
     links:
       - postgres
     command: api

@@ -4,15 +4,18 @@ services:
   cuckoo:
     image: blacktop/cuckoo:2.0
     command: daemon
+    cap_add:
+      - ALL
+    privileged: true
     ports:
-      - "2042:2042"
+      - 2042:2042
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - ./storage/:/cuckoo/storage/
-    networks:
-      - cuckoo
+      - ./suricata/suricata-cuckoo.yaml:/etc/suricata/suricata-cuckoo.yaml
+    network_mode: host
     env_file:
-      - ./2.0/config-file.env
+      - ./config-file.env
 
   web:
     image: blacktop/cuckoo:2.0
@@ -92,6 +95,8 @@ services:
       - cuckoo
 
 networks:
+  host:
+    driver: default
   cuckoo:
     driver: bridge
 

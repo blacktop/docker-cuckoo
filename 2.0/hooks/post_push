@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+VERSION=$(cat Dockerfile | grep '^ENV CUCKOO_VERSION' | cut -d" " -f3)
+TAGS=($VERSION 2)
+
+for TAG in "${TAGS[@]}"; do
+  echo "===> Tagging $IMAGE_NAME as $DOCKER_REPO:$TAG"
+  docker tag $IMAGE_NAME $DOCKER_REPO:$TAG
+  echo "===> Pushing $DOCKER_REPO:$TAG"
+  docker push $DOCKER_REPO:$TAG
+done

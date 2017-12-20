@@ -2,7 +2,7 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV CUCKOO_VERSION 2.0.4
+ENV CUCKOO_VERSION 2.0.5.1
 ENV CUCKOO_CWD /cuckoo
 ENV SSDEEP 2.14.1
 

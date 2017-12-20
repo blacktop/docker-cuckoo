@@ -127,6 +127,7 @@ if [ "$1" = 'daemon' -a "$(id -u)" = '0' ]; then
   # Change the ownership of /cuckoo to cuckoo
   chown -R cuckoo:cuckoo /cuckoo
   cd /cuckoo
+  rm -rf pidfiles/*.pid
 
   set -- su-exec cuckoo /sbin/tini -- cuckoo -d "$@"
 

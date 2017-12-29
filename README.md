@@ -141,7 +141,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 ## Credits
 
-Using `blacktop/cuckoo` with **VirtualBox** brought to you by the awesome work done by @ilyaglow and [remotevbox](https://github.com/ilyaglow/remote-virtualbox)
+Using `blacktop/cuckoo` with **VirtualBox** brought to you by the awesome work done by [@ilyaglow](https://github.com/ilyaglow) and [remotevbox](https://github.com/ilyaglow/remote-virtualbox)
 
 ## CHANGELOG
 

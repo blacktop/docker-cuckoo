@@ -32,15 +32,19 @@ Do not forget to import the certificate into the running cuckoo docker container
 
 ## Run using `docker-compose`
 
+### Start the cuckoo services
+
+```bash
+$ git clone --depth 1 https://github.com/blacktop/docker-cuckoo.git
+$ cd docker-cuckoo
+$ docker-compose -f docker-compose.vbox.yml up -d
+```
+
+### Troubleshooting
+
 - Ensure that the VirtualBox `host-only` interface is created and your `vboxnet0` IP address is `192.168.56.1`
 
 > If it differs, change the cuckoo service `ports:` section accordingly in the `docker-compose.vbox.yml` file.
 
 - Create a folder `/mnt/cuckoo-storage` on the host that will be used to store all cuckoo analysis data
 - Update `./conf/virtualbox_websrv.conf` file to reflect your current settings
-
-### Start the cuckoo services
-
-```bash
-$ docker-compose -f docker-compose.vbox.yml up -d
-```

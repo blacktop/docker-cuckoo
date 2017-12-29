@@ -2,7 +2,7 @@ version: "2"
 
 services:
   cuckoo:
-    build: .
+    image: blacktop/cuckoo:vbox
     command: daemon
     ports:
         - "192.168.56.1:2042:2042"
@@ -14,7 +14,7 @@ services:
       - ./2.0/config-file.env
 
   web:
-    build: .
+    image: blacktop/cuckoo:vbox
     ports:
       - "80:31337"
     depends_on:
@@ -32,7 +32,7 @@ services:
   api:
     depends_on:
       - postgres
-    build: .
+    image: blacktop/cuckoo:vbox
     ports:
         - "8000:1337"
     command: api

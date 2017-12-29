@@ -6,7 +6,7 @@
 
 The problem is in order to use `blacktop/cuckoo` on a host running both VirtualBox and docker would require either the ability to talk to a hypervisor from within the hypervisor *(VM breakout :scream:)* or have a way to mount the VirtualBox binary `vbox` inside the container.
 
-However, that would require installing VirtualBox inside the container making the docker image size to balloon and is also not a cross-platform solution (think Windows) because you also need to mount the vbox device `/dev/vboxdrv` into the running container.
+However, that would require installing VirtualBox inside the container causing the docker image size to balloon and is also not a cross-platform solution (think Windows) because you also need to mount the vbox device `/dev/vboxdrv` into the running container.
 
 We are instead communicating to the VirtualBox Web Service that VirtualBox can expose (via a SOAP API *yuck!* :confounded:) from the docker container running cuckoo.
 
@@ -14,7 +14,7 @@ However, the SOAP API changes a lot and I don't know when the last time you trie
 
 That is where [@ilyaglow](https://github.com/ilyaglow) and [remotevbox](https://github.com/ilyaglow/remote-virtualbox) come into play.
 
-**remotevbox** is a modern python wrapper around the SOAP API that makes it MUCH easier to use and he has a [pull request](https://github.com/cuckoosandbox/cuckoo/pull/1998) that adds it as an official cuckoo machinery waiting the be merged into the cuckoo repo now.
+**remotevbox** is a modern python wrapper around the SOAP API that makes it MUCH easier to use and @ilyaglow has a [pull request](https://github.com/cuckoosandbox/cuckoo/pull/1998) that adds it as an official cuckoo machinery waiting the be merged into the cuckoo repo now.
 
 ## How to set up VirtualBox Web Service
 

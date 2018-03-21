@@ -2,7 +2,7 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV CUCKOO_VERSION 2.0.5.1
+ENV CUCKOO_VERSION 2.0.5.3
 ENV CUCKOO_CWD /cuckoo
 ENV SSDEEP 2.14.1
 
@@ -10,38 +10,38 @@ ENV SSDEEP 2.14.1
 COPY requirements.txt /tmp/requirements.txt
 RUN apk add --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto curl
 RUN apk update && apk add --no-cache postgresql-dev \
-                       gcc \
-                       g++ \
-                       python-dev \
-                       libpq \
-                       py-pip \
+  gcc \
+  g++ \
+  python-dev \
+  libpq \
+  py-pip \
   && pip install --upgrade pip wheel \
   && pip install psycopg2 \
   && apk del --purge postgresql-dev \
-                     gcc \
-                     g++
+  gcc \
+  g++
 RUN apk add --no-cache -t .build-deps \
-                           linux-headers \
-                           openssl-dev \
-                           libxslt-dev \
-                           libxml2-dev \
-                           python-dev \
-                           libffi-dev \
-                           build-base \
-                           libstdc++ \
-                           zlib-dev \
-                           libc-dev \
-                           jpeg-dev \
-                           file-dev \
-                           automake \
-                           autoconf \
-                           libtool \
-                           py-pip \
-                           git \
+  linux-headers \
+  openssl-dev \
+  libxslt-dev \
+  libxml2-dev \
+  python-dev \
+  libffi-dev \
+  build-base \
+  libstdc++ \
+  zlib-dev \
+  libc-dev \
+  jpeg-dev \
+  file-dev \
+  automake \
+  autoconf \
+  libtool \
+  py-pip \
+  git \
   && set -x \
   && echo "===> Install ssdeep..." \
   && curl -Ls https://github.com/ssdeep-project/ssdeep/releases/download/release-$SSDEEP/ssdeep-$SSDEEP.tar.gz > \
-    /tmp/ssdeep-$SSDEEP.tar.gz \
+  /tmp/ssdeep-$SSDEEP.tar.gz \
   && cd /tmp \
   && tar xzf ssdeep-$SSDEEP.tar.gz \
   && cd ssdeep-$SSDEEP \

@@ -21,4 +21,8 @@ tags:
 test:
 	docker run --rm --name ctest $(REPO)/$(NAME):$(BUILD)
 
+.PHONY: ssh
+ssh:
+	docker run -it --rm --entrypoint=sh $(REPO)/$(NAME):$(BUILD)
+
 .PHONY: build size tags test

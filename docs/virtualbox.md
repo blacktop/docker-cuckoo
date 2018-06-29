@@ -94,7 +94,7 @@ sudouser@host:~$ pip install remotevbox --user
 sudouser@host:~$ python -c 'import remotevbox; vbox = remotevbox.connect("http://<external-ip>:18083", "", ""); print(vbox.get_version()); print(vbox.list_machines()); vbox.disconnect()'
 ```
 
-The latest command should return something like the following:
+The last command should return something like the following:
 ```
 5.2.12
 ['cuckoo-win81x64']

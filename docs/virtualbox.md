@@ -71,6 +71,7 @@ vbox@host:~$ vboxmanage hostonlyif ipconfig vboxnet0 --ip 192.168.56.1
 
 ```bash
 root@host:# chown -R vbox /mnt/cuckoo-storage
+root@host:# chown -R vbox /path/to/docker-cuckoo/cuckoo-tmp
 ```
 
 - Update `./conf/virtualbox_websrv.conf` file to reflect your current settings. If you decided to use no auth for your `vboxwebservice` leave `user` and `password` fields empty.

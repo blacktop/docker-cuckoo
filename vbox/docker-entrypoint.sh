@@ -87,9 +87,19 @@ waitFor() {
     echo >&2 "Address: ${1}:${2}"
 }
 
+setUID() {
+  if [ ! "$CUCKOO_UID" == "" ]; then
+    echo "===> Changing cuckoo uid to $CUCKOO_UID"
+    usermod -u "$CUCKOO_UID" cuckoo
+    echo "Done!"
+  fi
+}
+
 setUpCuckoo(){
   echo "===> Use default ports and hosts if not specified..."
   setDefaults
+  echo
+  setUID
   echo
   # Wait until all services are started
   if [ ! "$ES_HOST" == "" ]; then
@@ -114,16 +124,16 @@ if [ "$1" = 'daemon' ]; then
   cd /cuckoo
   rm -rf pidfiles/*.pid
 
-  exec cuckoo -d "$@"
+  su-exec cuckoo cuckoo -d "$@"
 
 elif [ "$1" = 'submit' ]; then
   shift
   setUpCuckoo
-  exec cuckoo submit "$@"
+  su-exec cuckoo cuckoo submit "$@"
 
 elif [ "$1" = 'api' ]; then
   setUpCuckoo
-  exec cuckoo api --host 0.0.0.0 --port 1337
+  su-exec cuckoo cuckoo api --host 0.0.0.0 --port 1337
 
 elif [ "$1" = 'web' ]; then
   setUpCuckoo
@@ -133,7 +143,7 @@ elif [ "$1" = 'web' ]; then
     echo >&2 "[ERROR] MongoDB cannot be found. Please link mongo and try again..."
     exit 1
   fi
-  exec cuckoo web runserver 0.0.0.0:31337
+  su-exec cuckoo cuckoo web runserver 0.0.0.0:31337
 fi
 
 exec "$@"

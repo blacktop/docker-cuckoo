@@ -2,7 +2,7 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ARG CUCKOO_UID=1000
+ARG DEFAULT_CUCKOO_UID=1000
 
 ENV CUCKOO_VERSION 2.0.6
 ENV CUCKOO_CWD /cuckoo
@@ -62,7 +62,7 @@ RUN apk add --update --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto 
   # && LDFLAGS=-L/lib pip install mitmproxy \
   && echo "===> Install Cuckoo Sandbox..." \
   && mkdir /cuckoo \
-  && adduser -D -h /cuckoo -u $CUCKOO_UID cuckoo \
+  && adduser -D -h /cuckoo -u $DEFAULT_CUCKOO_UID cuckoo \
   && export PIP_NO_CACHE_DIR=off \
   && export PIP_DISABLE_PIP_VERSION_CHECK=on \
   && pip install --upgrade wheel setuptools \
@@ -89,9 +89,11 @@ VOLUME ["/cuckoo/conf"]
 
 EXPOSE 1337 31337
 
-ADD --chown=cuckoo:cuckoo https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/machinery/virtualbox_websrv.py $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
-ADD --chown=cuckoo:cuckoo https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/common/config.py $CUCKOO_PACKAGE_PATH/common/config.py
+ADD https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/machinery/virtualbox_websrv.py $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
+ADD https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/common/config.py $CUCKOO_PACKAGE_PATH/common/config.py
 
-USER cuckoo
+RUN apk add shadow \
+  && chmod 644 $CUCKOO_PACKAGE_PATH/common/config.py \
+               $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
 
 ENTRYPOINT ["/entrypoint.sh"]

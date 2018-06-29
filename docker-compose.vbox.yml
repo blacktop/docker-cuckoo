@@ -5,7 +5,7 @@ services:
     image: blacktop/cuckoo:vbox
     command: daemon
     ports:
-        - "192.168.56.1:2042:2042"
+        - "2042:2042"
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - /mnt/cuckoo-storage/:/cuckoo/storage/
@@ -21,6 +21,7 @@ services:
       - mongo
       - elasticsearch
       - postgres
+      - cuckoo
     command: web
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
@@ -32,6 +33,7 @@ services:
   api:
     depends_on:
       - postgres
+      - cuckoo
     image: blacktop/cuckoo:vbox
     ports:
         - "8000:1337"

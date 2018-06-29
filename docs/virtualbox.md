@@ -110,4 +110,4 @@ sudouser@host:~/docker-cuckoo$ sudo docker-compose exec cuckoo ash -c 'id -u cuc
 1000
 ```
 
-> You can rebuild cuckoo, api and web docker images with a different uid by changing `docker-compose.vbox.yml` build args.
+> You can rebuild cuckoo, api and web docker images with a different uid by changing `docker-compose.vbox.yml` build argument `DEFAULT_CUCKOO_UID` or just uncomment and set `CUCKOO_UID` environment variable accordingly in `vbox/config-file.env`.

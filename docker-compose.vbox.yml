@@ -15,7 +15,7 @@ services:
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   web:
     build:
@@ -36,7 +36,7 @@ services:
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   api:
     depends_on:
@@ -55,7 +55,7 @@ services:
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   mongo:
     image: mongo

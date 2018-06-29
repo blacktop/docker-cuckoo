@@ -2,7 +2,11 @@ version: "2"
 
 services:
   cuckoo:
-    image: blacktop/cuckoo:vbox
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=25000
     command: daemon
     ports:
         - "2042:2042"
@@ -14,7 +18,11 @@ services:
       - ./2.0/config-file.env
 
   web:
-    image: blacktop/cuckoo:vbox
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=25000
     ports:
       - "80:31337"
     depends_on:
@@ -34,7 +42,11 @@ services:
     depends_on:
       - postgres
       - cuckoo
-    image: blacktop/cuckoo:vbox
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=25000
     ports:
         - "8000:1337"
     command: api

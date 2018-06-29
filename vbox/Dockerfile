@@ -2,7 +2,7 @@ FROM blacktop/volatility:2.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ARG CUCKOO_UID 25000
+ARG CUCKOO_UID=1000
 
 ENV CUCKOO_VERSION 2.0.6
 ENV CUCKOO_CWD /cuckoo

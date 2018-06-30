@@ -88,11 +88,11 @@ sudouser@host:~/docker-cuckoo$ sudo docker-compose -f docker-compose.vbox.yml up
 
 ### Troubleshooting
 
-- Check that you `vboxwebservice` is actually run and can be talked to by `remotevbox` package (change <external ip> accordingly:
+- Check that `vboxwebservice` is actually run and can be talked to by `remotevbox` package (change <external ip> accordingly:
 
 ```bash
 sudouser@host:~$ pip install remotevbox --user
-sudouser@host:~$ python -c 'import remotevbox; vbox = remotevbox.connect("http://<external-ip>:18083", "", ""); print(vbox.get_version()); print(vbox.list_machines()); vbox.disconnect()'
+sudouser@host:~$ python -c 'import remotevbox; vbox = remotevbox.connect("http://<external-ip>:18083", "VBOXWEB-USER", "VBOXWEB-USER-PASSWORD"); print(vbox.get_version()); print(vbox.list_machines()); vbox.disconnect()'
 ```
 
 The last command should return something like the following:
@@ -110,4 +110,4 @@ sudouser@host:~/docker-cuckoo$ sudo docker-compose exec cuckoo ash -c 'id -u cuc
 1000
 ```
 
-> You can rebuild cuckoo, api and web docker images with a different uid by changing `docker-compose.vbox.yml` build argument `DEFAULT_CUCKOO_UID` or just uncomment and set `CUCKOO_UID` environment variable accordingly in `vbox/config-file.env`.
+> You can rebuild cuckoo, api and web docker images with a different uid by changing `docker-compose.vbox.yml` build argument `DEFAULT_CUCKOO_UID` or just uncomment and set `CUCKOO_UID` environment variable accordingly in `vbox/config-file.env`. What's the difference? The latter allows you to not spend time rebuilding image, but will add overhead to containers restart time.

@@ -88,7 +88,7 @@ sudouser@host:~/docker-cuckoo$ sudo docker-compose -f docker-compose.vbox.yml up
 
 ### Troubleshooting
 
-- Check that `vboxwebservice` is actually run and can be talked to by `remotevbox` package (change <external ip> accordingly:
+- Check that `vboxwebservice` is actually running and can be talked to by `remotevbox` package (change <external ip> accordingly:
 
 ```bash
 sudouser@host:~$ pip install remotevbox --user

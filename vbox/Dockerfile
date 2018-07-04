@@ -19,6 +19,7 @@ RUN apk add --update --no-cache tcpdump py-lxml py-chardet py-libvirt py-crypto 
                        python-dev \
                        libpq \
                        py-pip \
+                       shadow \
   && pip install --upgrade pip wheel \
   && pip install psycopg2 \
   && apk del --purge postgresql-dev \
@@ -92,8 +93,7 @@ EXPOSE 1337 31337
 ADD https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/machinery/virtualbox_websrv.py $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
 ADD https://raw.githubusercontent.com/$CUCKOO_FORK_REPO/cuckoo/common/config.py $CUCKOO_PACKAGE_PATH/common/config.py
 
-RUN apk add shadow \
-  && chmod 644 $CUCKOO_PACKAGE_PATH/common/config.py \
-               $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
+RUN chmod 644 $CUCKOO_PACKAGE_PATH/common/config.py \
+              $CUCKOO_PACKAGE_PATH/machinery/virtualbox_websrv.py
 
 ENTRYPOINT ["/entrypoint.sh"]

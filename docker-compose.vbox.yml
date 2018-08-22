@@ -2,37 +2,51 @@ version: "2"
 
 services:
   cuckoo:
-    image: blacktop/cuckoo:vbox
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=1000
     command: daemon
     ports:
-        - "192.168.56.1:2042:2042"
+        - "2042:2042"
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   web:
-    image: blacktop/cuckoo:vbox
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=1000
     ports:
       - "80:31337"
     depends_on:
       - mongo
       - elasticsearch
       - postgres
+      - cuckoo
     command: web
     volumes:
       - ./cuckoo-tmp/:/tmp/cuckoo-tmp/
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   api:
     depends_on:
       - postgres
-    image: blacktop/cuckoo:vbox
+      - cuckoo
+    build:
+      dockerfile: vbox/Dockerfile
+      context: .
+      args:
+        - CUCKOO_UID=1000
     ports:
         - "8000:1337"
     command: api
@@ -41,7 +55,7 @@ services:
       - /mnt/cuckoo-storage/:/cuckoo/storage/
       - ./vbox/conf/:/cuckoo/conf/
     env_file:
-      - ./2.0/config-file.env
+      - ./vbox/config-file.env
 
   mongo:
     image: mongo

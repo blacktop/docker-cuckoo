@@ -72,9 +72,12 @@ Or install [Docker for Mac](https://docs.docker.com/docker-for-mac/)
 $ git clone https://github.com/blacktop/docker-cuckoo
 $ cd docker-cuckoo
 $ docker-compose up -d
+$ sysctl -w vm.max_map_count=262144
 # For docker-machine
 $ curl $(docker-machine ip):8000/cuckoo/status
 # For Docker for Mac
+Log in with root and no password. Then configure the sysctl setting as you would for Linux:
+$ sysctl -w vm.max_map_count=262144
 $ curl localhost:8000/cuckoo/status
 ```
 

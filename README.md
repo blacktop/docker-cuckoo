@@ -13,18 +13,22 @@
 
 **Table of Contents**
 
-* [Dependencies](#dependencies)
-* [Image Tags](#image-tags)
-* [Installation](#installation)
-* [To Run on OSX](#to-run-on-osx)
-* [Getting Started](#getting-started)
-* [Documentation](#documentation)
-* [Known Issues](#known-issues)
-* [Issues](#issues)
-* [Todo](#todo)
-* [CHANGELOG](#changelog)
-* [Contributing](#contributing)
-* [License](#license)
+- [!cuckoo-logo Dockerfile _beta_](#cuckoo-logo-dockerfile-beta)
+  - [Notice](#notice)
+  - [Dependencies](#dependencies)
+  - [Image Tags](#image-tags)
+  - [Installation](#installation)
+  - [To Run on OSX](#to-run-on-osx)
+  - [Getting Started](#getting-started)
+    - [Now Navigate To](#now-navigate-to)
+  - [Documentation](#documentation)
+  - [Known Issues](#known-issues)
+  - [Issues](#issues)
+  - [Todo](#todo)
+  - [Credits](#credits)
+  - [CHANGELOG](#changelog)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Dependencies
 
@@ -118,6 +122,8 @@ $ curl localhost:8000/cuckoo/status
 
 Currently won't work with VirtualBox, VMWare Workstation/Fusion or KVM/qemu, but I have an idea on how to do it. [:wink:](https://github.com/blacktop/vm-proxy) see the [NOTES](https://github.com/blacktop/docker-cuckoo/blob/master/NOTES.md)
 
+If you are getting issues with running elasticsearch you can try running: `sysctl -w vm.max_map_count=262144`
+
 ## Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-cuckoo/issues/new) and I'll get right on it.
@@ -151,4 +157,4 @@ Please update the [CHANGELOG.md](https://github.com/blacktop/docker-cuckoo/blob/
 
 ## License
 
-MIT Copyright (c) 2015-2018 **blacktop**
+MIT Copyright (c) 2015-2020 **blacktop**
